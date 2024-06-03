@@ -1,0 +1,170 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#wrapper {
+    width: 800px;
+    margin: auto;
+    color: black;
+    background-color: #ffffff;
+}
+
+h1 {
+    margin: 0 auto;
+}
+
+#menu {
+    width: 100%;
+    height: auto; /* Adjust height to auto */
+}
+
+#content {
+    width: 100%;
+    height: 480px;
+    margin-top: 0px; /* Remove margin-top if present */
+}
+
+#footer {
+    width: 800px;
+    height: 60px;
+    clear: both;
+}
+
+div ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 30px;
+    background-color: black;
+}
+
+div ul li a {
+    text-decoration: none;
+    color: white;
+    line-height: 30px;
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+}
+
+div ul li a:hover {
+    background-color: orange;
+    color: black;
+}
+
+#header img {
+    height: 80px;
+    width: 100%;
+}
+
+#menu img {
+    height: 80px;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    height: auto;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    width: 300px;
+    margin-left: 200px;
+    height: 25px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    height: 39px;
+    width: 65px;
+}
+
+.user-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.user-info .username {
+    margin-left: 10px;
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 35px;
+}
+
+.cart-icon a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.cart-icon img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.search-bar button {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.search-bar button:hover {
+    transform: scale(1.1);
+}
+
+#content .s {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+#content .re {
+    text-decoration: none;
+    color: black;
+}
+
+.abc {
+    padding: 10px;
+    width: 130px;
+}
+
+.abc img {
+    width: 50px;
+    height: 70px;
+    padding-left: 40px;
+}
+
+.abc p {
+    margin: 5px 0;
+}
