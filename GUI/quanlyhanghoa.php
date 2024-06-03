@@ -14,7 +14,7 @@
         <button type="submit">Tìm</button>
     </div>
 <div id="content" style="border: none ;">
-    <iframe name="content-frame" src="" frameborder="0" style="width:100%; height:800px;"></iframe>
+    <iframe name="content-frame" src="../BLL/HANGHOABLL.php" frameborder="0" style="width:100%; height:800px;"> </iframe>
 </div>
 </div>
 </body>
