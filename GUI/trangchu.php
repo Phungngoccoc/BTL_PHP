@@ -20,9 +20,11 @@
     </ul>
     <br>
 </div>
-<div id="content">
-    <iframe name="content-frame" src="quanlyhanghoa.php" frameborder="0" style="width:100%; height:800px;border: 1px solid black;"></iframe>
+<div id="content" >
+    <iframe name="content-frame" src="quanlyhanghoa.php" frameborder="0" style="width:100%; height:800px;border: 1px solid black;margin-bottom: 50px;"></iframe>
+    
 </div> 
 </div>
+
 </body>
 </html>
