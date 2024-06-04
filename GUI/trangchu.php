@@ -13,9 +13,9 @@
 <div id="menu">
     <br>
     <ul>
-        <li><a href="quanlyhanghoa.php" target="content-frame">Quản lý hàng hóa</a></li>
+        <li><a href="quanlyhanghoa.php" target="content-frame">Quản lý thông tin hàng</a></li>
         <li><a href="Quanlynhacungcap.php" target="content-frame">Quản lý nhà cung cấp</a></li>
-        <li><a href="Quanlydonhang.php" target="content-frame">Quản lý đơn hàng</a></li>
+        <li><a href="Quanlyhoadon.php" target="content-frame">Quản lý đơn hàng</a></li>
         <li><a href="Baocaothongke.php" target="content-frame">Báo cáo thống kê</a></li>
     </ul>
     <br>
