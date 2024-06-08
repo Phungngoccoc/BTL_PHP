@@ -4,17 +4,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>giaodientrangchu</title>
 <link rel="stylesheet" href="quanlyhanghoa.css">
+<style>
+    .selected-row {
+        background-color: black;
+        color: white;
+    }
+</style>
 <script>
     function selectRow(row) {
-        // Lấy các ô trong dòng đã chọn
-        var cells = row.getElementsByTagName('td');
+        // Remove 'selected-row' class from any previously selected row
+        var selected = document.querySelector('.selected-row');
+        if (selected) {
+            selected.classList.remove('selected-row');
+        }
 
-        // Gán giá trị của các ô cho các input tương ứng
+        // Add 'selected-row' class to the clicked row
+        row.classList.add('selected-row');
+
+        // Set form values from the clicked row
+        var cells = row.getElementsByTagName('td');
         document.getElementById('mahang').value = cells[0].innerText;
         document.getElementById('tenhang').value = cells[1].innerText;
         document.getElementById('dongia').value = cells[2].innerText;
         document.getElementById('soluong').value = cells[3].innerText;
-        document.getElementById('hinhanh').value = cells[4].getElementsByTagName('img')[0].src;
+        document.getElementById('donvitinh').value = cells[4].innerText;
         document.getElementById('mancc').value = cells[5].innerText;
     }
 </script>
@@ -31,89 +44,47 @@
 </div>
 
 <?php
-// Kết nối tới cơ sở dữ liệu và hiển thị dữ liệu
+include "../BLL/HANGHOABLL.php";
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "quanlyhanghoa";
 
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
+$bll = new HANGHOABLL($servername, $username, $password, $dbname);
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $action = isset($_POST['action']) ? $_POST['action'] : '';
+    $mahang = isset($_POST['mahang']) ? $_POST['mahang'] : '';
+    $tenhang = isset($_POST['tenhang']) ? $_POST['tenhang'] : '';
+    $dongia = isset($_POST['dongia']) ? $_POST['dongia'] : '';
+    $soluong = isset($_POST['soluong']) ? $_POST['soluong'] : '';
+    $donvitinh = isset($_POST['donvitinh']) ? $_POST['donvitinh'] : '';
+    $mancc = isset($_POST['mancc']) ? $_POST['mancc'] : '';
 
-// Xử lý khi nhấn nút "Thêm"
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'Thêm') {
-    $mahang = $_POST['mahang'];
-    $tenhang = $_POST['tenhang'];
-    $dongia = $_POST['dongia'];
-    $soluong = $_POST['soluong'];
-    $hinhanh = $_POST['hinhanh'];
-    $mancc = $_POST['mancc'];
-
-    $sql = "INSERT INTO hanghoa (mahang, tenhang, dongia, soluong, anh, mancc) VALUES ('$mahang', '$tenhang', '$dongia', '$soluong', '$hinhanh', '$mancc')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Thêm hàng thành công!');</script>";
-    } else {
-        echo "Lỗi: " . $sql . "<br>" . $conn->error;
+    if ($action == 'Thêm') {
+        if ($bll->addHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
+            echo "<script>alert('Thêm hàng thành công!');</script>";
+        } else {
+            echo "<script>alert('Thêm hàng thất bại!');</script>";
+        }
+    } elseif ($action == 'Sửa') {
+        if ($bll->editHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
+            echo "<script>alert('Sửa hàng thành công!');</script>";
+        } else {
+            echo "<script>alert('Sửa hàng thất bại!');</script>";
+        }
+    } elseif ($action == 'Xóa') {
+        if ($bll->removeHangHoa($mahang)) {
+            echo "<script>alert('Xóa hàng thành công!');</script>";
+        } else {
+            echo "<script>alert('Xóa hàng thất bại!');</script>";
+        }
     }
 }
 
-// Xử lý khi nhấn nút "Sửa"
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'Sửa') {
-    $mahang = $_POST['mahang'];
-    $tenhang = $_POST['tenhang'];
-    $dongia = $_POST['dongia'];
-    $soluong = $_POST['soluong'];
-    $hinhanh = $_POST['hinhanh'];
-    $mancc = $_POST['mancc'];
-
-    $sql = "UPDATE hanghoa SET tenhang='$tenhang', dongia='$dongia', soluong='$soluong', anh='$hinhanh', mancc='$mancc' WHERE mahang='$mahang'";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Sửa hàng thành công!');</script>";
-    } else {
-        echo "Lỗi: " . $sql . "<br>" . $conn->error;
-    }
-}
-
-// Xử lý khi nhấn nút "Xóa"
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'Xóa') {
-    $mahang = $_POST['mahang'];
-    $tenhang = $_POST['tenhang'];
-    $dongia = $_POST['dongia'];
-    $soluong = $_POST['soluong'];
-    $hinhanh = $_POST['hinhanh'];
-    $mancc = $_POST['mancc'];
-
-    // Xóa các bản ghi liên quan trong bảng donhang trước khi xóa bản ghi trong bảng hanghoa
-    $sql = "DELETE FROM donhang WHERE mahang='$mahang'";
-    $conn->query($sql);
-    
-    // Xóa bản ghi trong bảng hanghoa
-    $sql = "DELETE FROM hanghoa WHERE mahang='$mahang'";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Xóa hàng thành công!');</script>";
-    } else {
-        echo "Lỗi: " . $sql . "<br>" . $conn->error;
-    }
-}
-
-// Kiểm tra xem có từ khóa tìm kiếm không
 $search = isset($_POST['search']) ? $_POST['search'] : '';
-
-// Truy vấn dữ liệu
-if ($search != '') {
-    $sql = "SELECT mahang, tenhang, dongia, soluong, anh, mancc FROM hanghoa WHERE tenhang LIKE '%$search%'";
-} else {
-    $sql = "SELECT mahang, tenhang, dongia, soluong, anh, mancc FROM hanghoa";
-}
-$result = $conn->query($sql);
+$result = $bll->getHangHoa($search);
 ?>
 
 <form style="margin-top:50px;margin-left:100px" method="post">
@@ -123,7 +94,7 @@ $result = $conn->query($sql);
     <label style="font-size: 20px;">Đơn giá:</label> <input type="text" id="dongia" name="dongia" style="width: 180px;margin-left:6px">
     <label style="font-size: 20px;margin-left:80px">Số lượng:</label> <input type="text" id="soluong" name="soluong" style="width: 180px;margin-left:2px">
     <br><br>
-    <label style="font-size: 20px;">Hình ảnh:</label> <input type="text" id="hinhanh" name="hinhanh" style="width: 180px;margin-left:0px">
+    <label style="font-size: 20px;">Đơn vị tính:</label> <input type="text" id="donvitinh" name="donvitinh" style="width: 158px;margin-left:0px">
     <label style="font-size: 20px;margin-left:80px">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px;margin-left:2px">
     <br><br>
     <div class="search-bar">
@@ -134,34 +105,30 @@ $result = $conn->query($sql);
 </form>
 
 <div style="margin-top:50px;margin-left:20px;margin-right:20px">
-    <table border="1" cellpadding="auto" cellspacing="auto">
+    <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;">
         <tr>
             <th style="width:100px">Mã hàng</th>
-            <th style="width:200px">Tên hàng</th>
+            <th style="width:300px">Tên hàng</th>
             <th style="width:200px">Đơn giá</th>
-            <th style="width:100px">Số lượng</th>
-            <th style="width:200px">Hình ảnh</th>
+            <th style="width:200px">Số lượng</th>
+            <th style="width:200px">Đơn vị tính</th>
             <th style="width:100px">Mã NCC</th>
         </tr>
         <?php
-        // Hiển thị dữ liệu
         if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 echo "<tr onclick='selectRow(this)'>";
                 echo "<td>" . $row["mahang"] . "</td>";
                 echo "<td>" . $row["tenhang"] . "</td>";
                 echo "<td>" . $row["dongia"] . "</td>";
                 echo "<td>" . $row["soluong"] . "</td>";
-                echo "<td><img src='" . $row["anh"] . "' alt='Image' width='100'></td>";
+                echo "<td>" . $row["donvitinh"] . "</td>";
                 echo "<td>" . $row["mancc"] . "</td>";
                 echo "</tr>";
             }
         } else {
             echo "<tr><td colspan='6'>Không có dữ liệu</td></tr>";
         }
-
-        // Đóng kết nối
-        $conn->close();
         ?>
     </table>
 </div>

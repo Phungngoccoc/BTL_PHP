@@ -26,12 +26,6 @@ h1 {
     margin-top: 0px; /* Remove margin-top if present */
 }
 
-#footer {
-    width: 800px;
-    height: 60px;
-    clear: both;
-}
-
 div ul {
     list-style-type: none;
     display: flex;
@@ -55,28 +49,12 @@ div ul li a:hover {
     color: black;
 }
 
-#header img {
-    height: 80px;
-    width: 100%;
-}
-
-#menu img {
-    height: 80px;
-    width: 100%;
-}
-
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     margin-bottom: 10px;
-}
-
-.logo img {
-    width: 50px;
-    height: 50px;
-    height: auto;
 }
 
 .search-bar {
@@ -103,34 +81,10 @@ header {
     width: 65px;
 }
 
-.user-info img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-}
-
 .user-info .username {
     margin-left: 10px;
 }
 
-.cart-icon {
-    display: flex;
-    align-items: center;
-    margin-right: 35px;
-}
-
-.cart-icon a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-}
-
-.cart-icon img {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
-}
 
 .search-bar button {
     background-color: #4CAF50;
@@ -144,28 +98,3 @@ header {
     transform: scale(1.1);
 }
 
-#content .s {
-    text-decoration: none;
-    color: black;
-    margin-left: 20px;
-}
-
-#content .re {
-    text-decoration: none;
-    color: black;
-}
-
-.abc {
-    padding: 10px;
-    width: 130px;
-}
-
-.abc img {
-    width: 50px;
-    height: 70px;
-    padding-left: 40px;
-}
-
-.abc p {
-    margin: 5px 0;
-}

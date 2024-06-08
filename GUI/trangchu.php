@@ -5,8 +5,8 @@
 <title>giaodientrangchu</title>
 <link rel="stylesheet" href="quanlyhanghoa.css">
 </head>
-<body>
-<div id="wrapper">
+<body >
+<div id="wrapper" >
 <header>
     <h1>QUẢN LÝ HÀNG HÓA</h1>
 </header>
@@ -21,7 +21,7 @@
     <br>
 </div>
 <div id="content" >
-    <iframe name="content-frame" src="quanlyhanghoa.php" frameborder="0" style="width:100%; height:800px;border: 1px solid black;margin-bottom: 50px;"></iframe>
+    <iframe name="content-frame" src="quanlyhanghoa.php" frameborder="0" style="width:100%; height:670px;border: 1px solid black;margin-bottom: 50px;"></iframe>
     
 </div> 
 </div>

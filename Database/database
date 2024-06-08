@@ -1,4 +1,5 @@
 CREATE DATABASE QUANLYHANGHOA;
+USE QUANLYHANGHOA;
 CREATE TABLE TAIKHOAN (
     MATK VARCHAR(5) PRIMARY KEY,
     TENTK VARCHAR(255) NOT NULL,
@@ -15,7 +16,7 @@ CREATE TABLE HANGHOA (
     MAHANG VARCHAR(5) PRIMARY KEY,
     TENHANG VARCHAR(255) NOT NULL,
     DONGIA DECIMAL(10, 2) NOT NULL,
-    ANH VARCHAR(255),
+    DONVITINH VARCHAR(255),
     SOLUONG INT,
     MANCC VARCHAR(5),
     CONSTRAINT FK_HH_NCC FOREIGN KEY (MANCC) REFERENCES NHACUNGCAP(MANCC)
@@ -39,32 +40,22 @@ INSERT INTO NHACUNGCAP (MANCC, TENNCC, DIACHINCC) VALUES
 ('NCC05', 'HP', 'PHÚ THỌ');
 
 -- Thêm dữ liệu vào bảng HANGHOA
-INSERT INTO HANGHOA (MAHANG, TENHANG, DONGIA, ANH, SOLUONG, MANCC) VALUES
-('HH01', 'IPHONE 15 PROMAX', 30000000.00, 'anh1.jpg', 100, 'NCC02'),
-('HH02', 'TỦ LẠNH', 15000000.00, 'anh2.jpg', 200, 'NCC02'),
-('HH03', 'Hàng hóa 3', 20000.00, 'anh3.jpg', 150, 'NCC03'),
-('HH04', 'Hàng hóa 4', 25000.00, 'anh4.jpg', 80, 'NCC04'),
-('HH05', 'Hàng hóa 5', 30000.00, 'anh5.jpg', 50, 'NCC05'),
-('HH06', 'Hàng hóa 6', 12000.00, 'anh6.jpg', 60, 'NCC01'),
-('HH07', 'Hàng hóa 7', 18000.00, 'anh7.jpg', 90, 'NCC02'),
-('HH08', 'Hàng hóa 8', 22000.00, 'anh8.jpg', 110, 'NCC03'),
-('HH09', 'Hàng hóa 9', 27000.00, 'anh9.jpg', 75, 'NCC04'),
-('HH10', 'Hàng hóa 10', 32000.00, 'anh10.jpg', 65, 'NCC05'),
-('HH11', 'Hàng hóa 11', 14000.00, 'anh11.jpg', 120, 'NCC01'),
-('HH12', 'Hàng hóa 12', 19000.00, 'anh12.jpg', 95, 'NCC02'),
-('HH13', 'Hàng hóa 13', 21000.00, 'anh13.jpg', 85, 'NCC03'),
-('HH14', 'Hàng hóa 14', 26000.00, 'anh14.jpg', 70, 'NCC04'),
-('HH15', 'Hàng hóa 15', 31000.00, 'anh15.jpg', 55, 'NCC05'),
-('HH16', 'Hàng hóa 16', 13000.00, 'anh16.jpg', 130, 'NCC01'),
-('HH17', 'Hàng hóa 17', 17000.00, 'anh17.jpg', 140, 'NCC02'),
-('HH18', 'Hàng hóa 18', 23000.00, 'anh18.jpg', 50, 'NCC03'),
-('HH19', 'Hàng hóa 19', 28000.00, 'anh19.jpg', 150, 'NCC04'),
-('HH20', 'Hàng hóa 20', 33000.00, 'anh20.jpg', 45, 'NCC05');
+INSERT INTO HANGHOA (MAHANG, TENHANG, DONGIA, DONVITINH, SOLUONG, MANCC) VALUES
+('HH01', 'IPHONE 15 PROMAX', 30000000.00, 'cái', 100, 'NCC02'),
+('HH02', 'TỦ LẠNH', 15000000.00, 'cái', 200, 'NCC02'),
+('HH03', 'Hàng hóa 3', 20000.00, 'kg', 150, 'NCC03'),
+('HH04', 'Hàng hóa 4', 25000.00, 'lít', 80, 'NCC04'),
+('HH05', 'Hàng hóa 5', 30000.00, 'cm', 50, 'NCC05'),
+('HH06', 'Hàng hóa 6', 12000.00, 'mét', 60, 'NCC01'),
+('HH07', 'Hàng hóa 7', 18000.00, 'cái', 90, 'NCC02'),
+('HH08', 'Hàng hóa 8', 22000.00, 'kg', 110, 'NCC03'),
+('HH09', 'Hàng hóa 9', 27000.00, 'lít', 75, 'NCC04'),
+('HH10', 'Hàng hóa 10', 32000.00, 'mg', 65, 'NCC05'),
+('HH11', 'Hàng hóa 20', 33000.00, 'cm', 45, 'NCC05');
 
 -- Thêm tài khoản
 INSERT INTO TAIKHOAN (MATK, TENTK, MATKHAU) VALUES ('TK001', 'admin', '123456');
 
 -- Thêm đơn hàng
 INSERT INTO DONHANG (MADONHANG, MAHANG, TENKHACHHANG, SOLUONG, DIACHIDONHANG, TRANGTHAI) VALUES
-('DH001', 'HH01', 'Khách hàng A', 2, 'Địa chỉ A', 'Chưa xử lý'),
-('DH002', 'HH05', 'Khách
+('DH001', 'HH01', 'Khách hàng A', 2, 'Địa chỉ A', 'Chưa xử lý');
