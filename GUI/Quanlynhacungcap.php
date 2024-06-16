@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Quản lý nhà cung cấp</title>
-    <link rel="stylesheet" href="quanlynhacungcap.css">
+    <link rel="stylesheet" href="quanlynhacuncap.css">
     <script>
         function selectRow(row) {
             // Remove 'selected-row' class from any previously selected row

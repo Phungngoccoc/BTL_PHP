@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="quanlyhanghoa.css">
 <style>
     .selected-row {
-        background-color: black;
+        background-color:#4CAF50;
         color: white;
     }
 </style>
@@ -63,23 +63,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mancc = isset($_POST['mancc']) ? $_POST['mancc'] : '';
 
     if ($action == 'Thêm') {
-        if ($bll->addHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
-            echo "<script>alert('Thêm hàng thành công!');</script>";
-        } else {
-            echo "<script>alert('Thêm hàng thất bại!');</script>";
+        if(empty($mahang)||empty($tenhang)||empty($dongia)||empty($soluong)||empty($donvitinh))
+        {
+            echo "<script>alert('Không được để trống thông tin!');</script>";
+        }else{
+            $result = $bll->getmahang($mahang);
+            if($result->num_rows > 0)
+            {
+                echo "<script>alert('Mã hàng đã tồn tại!');</script>";
+            }else{
+                if ($bll->addHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
+                    echo "<script>alert('Thêm hàng thành công!');</script>";
+                } else {
+                    echo "<script>alert('Thêm hàng thất bại!');</script>";
+                }
+            }
+            
         }
+        
     } elseif ($action == 'Sửa') {
-        if ($bll->editHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
-            echo "<script>alert('Sửa hàng thành công!');</script>";
-        } else {
-            echo "<script>alert('Sửa hàng thất bại!');</script>";
+        if(empty($mahang)||empty($tenhang)||empty($dongia)||empty($soluong)||empty($donvitinh))
+        {
+            echo "<script>alert('Không được để trống thông tin!');</script>";
+        }else{
+            $result = $bll->getmahang($mahang);
+            if($result->num_rows > 0)
+            {
+                if ($bll->editHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
+                    echo "<script>alert('Sửa hàng thành công!');</script>";
+                } else {
+                    echo "<script>alert('Sửa hàng thất bại!');</script>";
+                }
+            }else{
+                echo "<script>alert('Mã hàng không tồn tại!');</script>";
+            }
+            
         }
+        
     } elseif ($action == 'Xóa') {
-        if ($bll->removeHangHoa($mahang)) {
-            echo "<script>alert('Xóa hàng thành công!');</script>";
-        } else {
-            echo "<script>alert('Xóa hàng thất bại!');</script>";
-        }
+        if(empty($mahang))
+        {
+            echo "<script>alert('Không được để trống thông tin!');</script>";
+        }else{
+            $result = $bll->getmahang($mahang);
+            if($result->num_rows > 0)
+            {
+                if ($bll->removeHangHoa($mahang)) {
+                    echo "<script>alert('Xóa hàng thành công!');</script>";
+                } else {
+                    echo "<script>alert('Xóa hàng thất bại!');</script>";
+                }
+            }else{
+                echo "<script>alert('Mã hàng không tồn tại!');</script>";
+            }
+            
+        }  
     }
 }
 
@@ -105,14 +143,14 @@ $result = $bll->getHangHoa($search);
 </form>
 
 <div style="margin-top:50px;margin-left:20px;margin-right:20px">
-    <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;">
+    <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;border-collapse: collapse">
         <tr>
-            <th style="width:100px">Mã hàng</th>
-            <th style="width:300px">Tên hàng</th>
-            <th style="width:200px">Đơn giá</th>
-            <th style="width:200px">Số lượng</th>
-            <th style="width:200px">Đơn vị tính</th>
-            <th style="width:100px">Mã NCC</th>
+            <th style="width:100px;background-color: #4CAF50;color: white;">Mã hàng</th>
+            <th style="width:300px;background-color: #4CAF50;color: white">Tên hàng</th>
+            <th style="width:200px;background-color: #4CAF50;color: white">Đơn giá</th>
+            <th style="width:200px;background-color: #4CAF50;color: white">Số lượng</th>
+            <th style="width:200px;background-color: #4CAF50;color: white">Đơn vị tính</th>
+            <th style="width:100px;background-color: #4CAF50;color: white">Mã NCC</th>
         </tr>
         <?php
         if ($result->num_rows > 0) {

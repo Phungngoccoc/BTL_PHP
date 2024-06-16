@@ -15,6 +15,9 @@ class HANGHOABLL {
             return $this->dal->getAllHangHoa();
         }
     }
+    public function getmahang($mahang) {
+        return $this->dal->getmahang($mahang);
+    }
 
     public function addHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc) {
         return $this->dal->insertHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc);
@@ -27,5 +30,6 @@ class HANGHOABLL {
     public function removeHangHoa($mahang) {
         return $this->dal->deleteHangHoa($mahang);
     }
+    
 }
 ?>

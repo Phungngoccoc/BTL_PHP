@@ -42,5 +42,12 @@ class HANGHOADAL {
         $sql = "DELETE FROM hanghoa WHERE mahang='$mahang'";
         return $this->conn->query($sql);
     }
+    public function getmahang($mahang) {
+        $sql = "SELECT * FROM hanghoa WHERE mahang = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $mahang);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 }
 ?>
