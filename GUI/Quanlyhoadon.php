@@ -133,7 +133,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "DONHANG";
+    $dbname = "QUANLYHANGHOA";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -142,20 +142,60 @@
     }
     ?>
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "QUANLIDONHANG";
+
+// Tạo kết nối
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
+
+<?php
+include 'config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $MAHANG = $_POST['MAHANG'];
+    $TENKHACHHANG = $_POST['TENKHACHHANG'];
+    $SOLUONG = $_POST['SOLUONG'];
+    $DIACHIHANG = $_POST['DIACHIHANG'];
+    $TRANGTHAI = $_POST['TRANGTHAI'];
+
+    $sql = "INSERT INTO DONHANG (MAHANG, TENKHACHHANG, SOLUONG, DIACHIHANG, TRANGTHAI) 
+            VALUES ('$MAHANG', '$TENKHACHHANG', '$SOLUONG', '$DIACHIHANG', '$TRANGTHAI')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New order created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
+
+<?php
 include 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $MADONHANG = $_POST['MADONHANG'];
     $MAHANG = $_POST['MAHANG'];
     $TENKHACHHANG = $_POST['TENKHACHHANG'];
-    $SOLUONG= $_POST['SOLUONG'];
+    $SOLUONG = $_POST['SOLUONG'];
     $DIACHIHANG = $_POST['DIACHIHANG'];
     $TRANGTHAI = $_POST['TRANGTHAI'];
 
-    $sql = "INSERT INTO orders (MADONHANG, MAHANG, TENKHACHHANG, SOLUONG, DIACHIDONHANG, TRANGTHAI) VALUES ('$MADONHANG', '$MAHANG', '$TENKHACHHANG', '$SOLUONG', '$DIACHIHANG', '$TRANGTHAI')";
+    $sql = "UPDATE DONHANG SET MAHANG='$MAHANG', TENKHACHHANG='$TENKHACHHANG', SOLUONG='$SOLUONG', DIACHIHANG='$DIACHIHANG', TRANGTHAI='$TRANGTHAI' 
+            WHERE MADONHANG='$MADONHANG'";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo "Order updated successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -163,39 +203,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 <?php
 include 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $orderID = $_POST['orderID'];
-    $customerName = $_POST['customerName'];
-    $product = $_POST['product'];
-    $quantity = $_POST['quantity'];
-    $price = $_POST['price'];
-    $orderDate = $_POST['orderDate'];
+    $MADONHANG = $_POST['MADONHANG'];
 
-    $sql = "UPDATE orders SET orderID='$orderID', customerName='$customerName', product='$product', quantity='$quantity', price='$price', orderDate='$orderDate' WHERE id='$id'";
+    $sql = "DELETE FROM DONHANG WHERE MADONHANG='$MADONHANG'";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
-<?php
-include 'config.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-
-    $sql = "DELETE FROM orders WHERE id='$id'";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record deleted successfully";
+        echo "Order deleted successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -207,18 +225,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include 'config.php';
 
 $search = $_GET['search'];
-$sql = "SELECT * FROM orders WHERE orderID LIKE '%$search%' OR customerName LIKE '%$search%' OR product LIKE '%$search%'";
+$sql = "SELECT * FROM DONHANG WHERE MAHANG LIKE '%$search%' OR TENKHACHHANG LIKE '%$search%'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"] . " - Order ID: " . $row["orderID"] . " - Customer Name: " . $row["customerName"] . " - Product: " . $row["product"] . " - Quantity: " . $row["quantity"] . " - Price: " . $row["price"] . " - Order Date: " . $row["orderDate"] . "<br>";
+    while($row = $result->fetch_assoc()) {
+        echo "MADONHANG: " . $row["MADONHANG"]. " - MAHANG: " . $row["MAHANG"]. " - TENKHACHHANG: " . $row["TENKHACHHANG"]. " - SOLUONG: " . $row["SOLUONG"]. " - DIACHIHANG: " . $row["DIACHIHANG"]. " - TRANGTHAI: " . $row["TRANGTHAI"]. "<br>";
     }
 } else {
     echo "0 results";
 }
 $conn->close();
 ?>
+
 
 </body>
 </html>
