@@ -95,30 +95,30 @@
         <h1>Order Management</h1>
         <form id="orderForm" method="post" action="add_order.php">
             <div class="form-group">
-                <label for="orderID">Order ID</label>
-                <input type="text" id="orderID" name="orderID" required>
+                <label for="orderID">Mã đơn hàng</label>
+                <input type="text" id="MADONHANG" name="MADONHANG" required>
             </div>
             <div class="form-group">
-                <label for="customerName">Customer Name</label>
-                <input type="text" id="customerName" name="customerName" required>
+                <label for="MAHANG">Mã Hàng</label>
+                <input type="text" id="MAHANG" name="MAHANG" required>
             </div>
             <div class="form-group">
-                <label for="product">Product</label>
-                <input type="text" id="product" name="product" required>
+                <label for="TENKHACHHANG">Tên Khách Hàng</label>
+                <input type="text" id="TENKNHACHHANG" name="TENKHACHHANG" required>
             </div>
             <div class="form-group">
-                <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" name="quantity" required>
+                <label for="SOLUONG">SOLUONG</label>
+                <input type="number" id="SOLUONG" name="SOLUONG" required>
             </div>
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" id="price" name="price" required>
+                <label for="DIACHIHANG">Địa chỉ hàng</label>
+                <input type="text" id="DIACHIHANG" name="DIACHIHANG" required>
             </div>
             <div class="form-group">
-                <label for="orderDate">Order Date</label>
-                <input type="date" id="orderDate" name="orderDate" required>
+                <label for="TRANGTHAI">Trạng Thái</label>
+                <input type="text" id="TRANGTHAI" name="TRANGTHAI" required>
             </div>
-            <button type="submit">Submit Order</button>
+            <button type="submit">Submit</button>
         </form>
         
         <form id="searchForm" method="get" action="search_order.php" style="margin-top: 20px;">
@@ -133,7 +133,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "QUANLYHANGHOA";
+    $dbname = "quanlihanghoa";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -145,7 +145,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "QUANLIDONHANG";
+$dbname = "quanlihanghoa";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -229,8 +229,8 @@ $sql = "SELECT * FROM DONHANG WHERE MAHANG LIKE '%$search%' OR TENKHACHHANG LIKE
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "MADONHANG: " . $row["MADONHANG"]. " - MAHANG: " . $row["MAHANG"]. " - TENKHACHHANG: " . $row["TENKHACHHANG"]. " - SOLUONG: " . $row["SOLUONG"]. " - DIACHIHANG: " . $row["DIACHIHANG"]. " - TRANGTHAI: " . $row["TRANGTHAI"]. "<br>";
+    while ($row = $result->fetch_assoc()) {
+        echo "MADONHANG: " . $row["MADONHANG"] . " - MAHANG: " . $row["MAHANG"] . " - TENKHACHHANG: " . $row["TENKHACHHANG"] . " - SOLUONG: " . $row["SOLUONG"] . " - DIACHIHANG: " . $row["DIACHIHANG"] . " - TRANGTHAI: " . $row["TRANGTHAI"] . "<br>";
     }
 } else {
     echo "0 results";
