@@ -37,11 +37,10 @@ class NCCDAL {
     }
 
     public function deleteNhaCungCap($MANCC) {
+        $sql = "DELETE FROM donhang WHERE MANCC = '$MANCC'";
+        $sql = "DELETE FROM hanghoa WHERE MANCC = '$MANCC'";
+        $this->conn->query($sql);
         $sql = "DELETE FROM nhacungcap WHERE MANCC = '$MANCC'";
-        if ($this->conn->query($sql) === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->conn->query($sql);
     }
 }

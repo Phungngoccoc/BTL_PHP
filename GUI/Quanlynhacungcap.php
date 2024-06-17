@@ -3,6 +3,12 @@
 <head>
     <title>Quản lý nhà cung cấp</title>
     <link rel="stylesheet" href="quanlynhacuncap.css">
+    <style>
+    .selected-row {
+        background-color:#4CAF50;
+        color: white;
+    }
+    </style>
     <script>
         function selectRow(row) {
             // Remove 'selected-row' class from any previously selected row
@@ -87,11 +93,11 @@
     </form>
 
     <div style="margin-top:50px;margin-left:20px;margin-right:20px">
-        <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;">
+    <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;border-collapse: collapse">
             <tr>
-                <th style="width:100px">Mã NCC</th>
-                <th style="width:300px">Tên NCC</th>
-                <th style="width:300px">Địa chỉ NCC</th>
+                <th style="width:100px;background-color: #4CAF50;color: white;">Mã NCC</th>
+                <th style="width:300px;background-color: #4CAF50;color: white;">Tên NCC</th>
+                <th style="width:300px;background-color: #4CAF50;color: white;">Địa chỉ NCC</th>
             </tr>
             <?php
             if ($result->num_rows > 0) {
