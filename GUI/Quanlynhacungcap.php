@@ -81,10 +81,10 @@
     ?>
 
     <form style="margin-top:50px;margin-left:100px" method="post">
-        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px">
-        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px">
+        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px" required>
+        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px" required>
         <br><br>
-        <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 158px;margin-left:0px">
+        <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 158px;margin-left:0px" required>
         <div style="margin-top:50px" class="search-bar">
             <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
             <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
