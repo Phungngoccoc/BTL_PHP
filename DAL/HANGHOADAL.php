@@ -37,8 +37,6 @@ class HANGHOADAL {
     }
 
     public function deleteHangHoa($mahang) {
-        $sql = "DELETE FROM donhang WHERE mahang='$mahang'";
-        $this->conn->query($sql);
         $sql = "DELETE FROM hanghoa WHERE mahang='$mahang'";
         return $this->conn->query($sql);
     }
