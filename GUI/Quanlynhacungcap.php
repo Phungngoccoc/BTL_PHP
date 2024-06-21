@@ -3,6 +3,12 @@
 <head>
     <title>Quản lý nhà cung cấp</title>
     <link rel="stylesheet" href="quanlynhacuncap.css">
+    <style>
+    .selected-row {
+        background-color:#4CAF50;
+        color: white;
+    }
+    </style>
     <script>
         function selectRow(row) {
             // Remove 'selected-row' class from any previously selected row
@@ -75,10 +81,10 @@
     ?>
 
     <form style="margin-top:50px;margin-left:100px" method="post">
-        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px">
-        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px">
+        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px" required>
+        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px" required>
         <br><br>
-        <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 158px;margin-left:0px">
+        <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 158px;margin-left:0px" required>
         <div style="margin-top:50px" class="search-bar">
             <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
             <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
@@ -87,11 +93,11 @@
     </form>
 
     <div style="margin-top:50px;margin-left:20px;margin-right:20px">
-        <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;">
+    <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;border-collapse: collapse">
             <tr>
-                <th style="width:100px">Mã NCC</th>
-                <th style="width:300px">Tên NCC</th>
-                <th style="width:300px">Địa chỉ NCC</th>
+                <th style="width:100px;background-color: #4CAF50;color: white;">Mã NCC</th>
+                <th style="width:300px;background-color: #4CAF50;color: white;">Tên NCC</th>
+                <th style="width:300px;background-color: #4CAF50;color: white;">Địa chỉ NCC</th>
             </tr>
             <?php
             if ($result->num_rows > 0) {
