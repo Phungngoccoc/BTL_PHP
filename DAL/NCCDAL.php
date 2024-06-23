@@ -23,8 +23,8 @@ class NCCDAL {
         return $result;
     }
 
-    public function insertNhaCungCap($MANCC,$TENNCC, $DIACHINCC) {
-        $sql = "INSERT INTO nhacungcap (MANCC,TENNCC, DIACHINCC) VALUES ('$MANCC','$TENNCC', '$DIACHINCC')";
+    public function insertNhaCungCap($MANCC,$TENNCC, $DIACHINCC,$EMAIL) {
+        $sql = "INSERT INTO nhacungcap (MANCC,TENNCC, DIACHINCC, EMAIL) VALUES ('$MANCC','$TENNCC', '$DIACHINCC','$EMAIL')";
         if ($this->conn->query($sql) === TRUE) {
             return true;
         } else {
@@ -32,8 +32,8 @@ class NCCDAL {
         }
     }
 
-    public function updateNhaCungCap($MANCC, $TENNCC, $DIACHINCC) {
-        $sql = "UPDATE nhacungcap SET TENNCC = '$TENNCC', DIACHINCC = '$DIACHINCC' WHERE MANCC = '$MANCC'";
+    public function updateNhaCungCap($MANCC, $TENNCC, $DIACHINCC,$EMAIL) {
+        $sql = "UPDATE nhacungcap SET TENNCC = '$TENNCC', DIACHINCC = '$DIACHINCC',EMAIL='$EMAIL' WHERE MANCC = '$MANCC'";
         if ($this->conn->query($sql) === TRUE) {
             return true;
         } else {

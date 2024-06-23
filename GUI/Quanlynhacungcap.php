@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Quản lý nhà cung cấp</title>
-    <link rel="stylesheet" href="quanlynhacuncap.css">
+    <link rel="stylesheet" href="quanlynhacungcap.css">
     <style>
     .selected-row {
         background-color:#4CAF50;
@@ -11,20 +11,21 @@
     </style>
     <script>
         function selectRow(row) {
-            // Remove 'selected-row' class from any previously selected row
+            // Xóa lớp 'selected-row' khỏi bất kỳ hàng nào đã chọn trước đó
             var selected = document.querySelector('.selected-row');
             if (selected) {
                 selected.classList.remove('selected-row');
             }
 
-            // Add 'selected-row' class to the clicked row
+          // Thêm lớp 'selected-row' vào hàng được nhấp chuột
             row.classList.add('selected-row');
 
-            // Set form values from the clicked row
+           // Đặt giá trị biểu mẫu từ hàng được click
             var cells = row.getElementsByTagName('td');
             document.getElementById('mancc').value = cells[0].innerText;
             document.getElementById('tenncc').value = cells[1].innerText;
             document.getElementById('diachincc').value = cells[2].innerText;
+            document.getElementById('email').value = cells[3].innerText;
         }
     </script>
 </head>
@@ -54,15 +55,16 @@
         $mancc = isset($_POST['mancc']) ? $_POST['mancc'] : '';
         $tenncc = isset($_POST['tenncc']) ? $_POST['tenncc'] : '';
         $diachincc = isset($_POST['diachincc']) ? $_POST['diachincc'] : '';
+        $email  =  isset($_POST['email']) ? $_POST['email'] : '';
 
         if ($action == 'Thêm') {
-            if ($bll->addNhaCungCap( $mancc, $tenncc, $diachincc)) {
+            if ($bll->addNhaCungCap( $mancc, $tenncc, $diachincc, $email)) {
                 echo "<script>alert('Thêm nhà cung cấp thành công!');</script>";
             } else {
                 echo "<script>alert('Thêm nhà cung cấp thất bại!');</script>";
             }
         } elseif ($action == 'Sửa') {
-            if ($bll->editNhaCungCap($mancc, $tenncc, $diachincc)) {
+            if ($bll->editNhaCungCap($mancc, $tenncc, $diachincc, $email)) {
                 echo "<script>alert('Sửa nhà cung cấp thành công!');</script>";
             } else {
                 echo "<script>alert('Sửa nhà cung cấp thất bại!');</script>";
@@ -85,6 +87,7 @@
         <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px" required>
         <br><br>
         <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 158px;margin-left:0px" required>
+        <label style="font-size: 20px;margin-left:80px">Email NCC:</label> <input type="email" id="email" name="email" style="width: 158px;margin-left:0px" required>
         <div style="margin-top:50px" class="search-bar">
             <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
             <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
@@ -98,6 +101,7 @@
                 <th style="width:100px;background-color: #4CAF50;color: white;">Mã NCC</th>
                 <th style="width:300px;background-color: #4CAF50;color: white;">Tên NCC</th>
                 <th style="width:300px;background-color: #4CAF50;color: white;">Địa chỉ NCC</th>
+                <th style="width:300px;background-color: #4CAF50;color: white;">Email NCC</th>
             </tr>
             <?php
             if ($result->num_rows > 0) {
@@ -106,6 +110,7 @@
                     echo "<td>" . $row["MANCC"] . "</td>";
                     echo "<td>" . $row["TENNCC"] . "</td>";
                     echo "<td>" . $row["DIACHINCC"] . "</td>";
+                    echo "<td>" . $row["EMAIL"] . "</td>";
                     echo "</tr>";
                 }
             } else {
