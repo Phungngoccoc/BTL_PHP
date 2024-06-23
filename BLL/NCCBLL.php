@@ -17,6 +17,7 @@ class NCCBLL {
 
     public function addNhaCungCap($MANCC, $TENNCC, $DIACHINCC, $EMAIL) {
          // Chuẩn hóa dữ liệu trước khi thêm vào cơ sở dữ liệu
+         $MANCC = str_replace(" ", "", $MANCC);
          $MANCC = strtoupper(trim($MANCC)); // Chuyển thành chữ hoa và loại bỏ khoảng trắng thừa         
          $TENNCC = ucwords(strtolower(trim($TENNCC))); // Chuẩn hóa chữ cái đầu của mỗi từ viết hoa, các ký tự còn lại viết thường
          $DIACHINCC = ucwords(strtolower(trim($DIACHINCC)));// Chuẩn hóa chữ cái đầu của mỗi từ viết hoa, các ký tự còn lại viết thường
@@ -25,6 +26,7 @@ class NCCBLL {
     }
 
     public function editNhaCungCap($MANCC, $TENNCC, $DIACHINCC, $EMAIL) {
+        $MANCC = str_replace(" ", "", $MANCC);
         $MANCC = strtoupper(trim($MANCC)); // Chuyển thành chữ hoa và loại bỏ khoảng trắng thừa         
          $TENNCC = ucwords(strtolower(trim($TENNCC))); // Chuẩn hóa chữ cái đầu của mỗi từ viết hoa, các ký tự còn lại viết thường
          $DIACHINCC = ucwords(strtolower(trim($DIACHINCC)));// Chuẩn hóa chữ cái đầu của mỗi từ viết hoa, các ký tự còn lại viết thường
