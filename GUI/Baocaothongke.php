@@ -5,7 +5,7 @@
 <title>giaodientrangchu</title>
 <style>
     body {
-        font-family: 'Times New Roman', Times, serif;
+        font-family: Arial, sans-serif;
     }
     table {
         width: 100%;
@@ -21,9 +21,9 @@
         color: white;
     }
     table {
-    width: 50%;
-    margin: auto;
-    border-collapse: collapse;
+        width: 50%;
+        margin: auto;
+        border-collapse: collapse;
     }   
     caption {
         margin-top: 10px;
@@ -34,6 +34,21 @@
         font-weight: bold;
         color: #333;
     }
+    #refresh-button {
+        display: block;
+        width: 150px;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #refresh-button:hover {
+        background-color: #45a049;
+    }
 </style>
 <link rel="stylesheet" href="quanlyhanghoa.css">
 </head>
@@ -42,6 +57,7 @@
     <h1>BÁO CÁO THỐNG KÊ</h1>
 </header>
 <div id="content" style="border: none ;">
+    <button id="refresh-button" onclick="location.reload();">Refresh</button>
 
     <?php
         // Kết nối với cơ sở dữ liệu
@@ -60,7 +76,6 @@
         $result = $conn->query($sql);
 
         // Tạo bảng HTML với dữ liệu từ cơ sở dữ liệu
-
         echo "<table>";
         echo "<caption>Thống Kê Số Mặt Hàng Theo NCC</caption>";
         echo "<tr><th>Mã nhà cung cấp</th><th>Tên nhà cung cấp</th><th>Số lượng hàng hóa</th></tr>";
@@ -101,9 +116,8 @@
         // Đóng kết nối với cơ sở dữ liệu
         $conn->close();
     ?>
-
-
-</div>
+    <br>
+    <br>
 </div>
 </body>
 </html>
