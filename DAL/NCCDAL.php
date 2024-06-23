@@ -17,6 +17,11 @@ class NCCDAL {
         $result = $this->conn->query($sql);
         return $result;
     }
+    public function getAllNhaCungCap() {
+        $sql = "SELECT mancc FROM nhacungcap";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
 
     public function insertNhaCungCap($MANCC,$TENNCC, $DIACHINCC) {
         $sql = "INSERT INTO nhacungcap (MANCC,TENNCC, DIACHINCC) VALUES ('$MANCC','$TENNCC', '$DIACHINCC')";

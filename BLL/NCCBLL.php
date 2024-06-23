@@ -11,6 +11,9 @@ class NCCBLL {
     public function getNhaCungCap($search = '') {
         return $this->dal->getNhaCungCap($search);
     }
+    public function getAllNhaCungCap() {
+        return $this->dal->getAllNhaCungCap();
+    }
 
     public function addNhaCungCap($MANCC, $TENNCC, $DIACHINCC) {
          // Chuẩn hóa dữ liệu trước khi thêm vào cơ sở dữ liệu

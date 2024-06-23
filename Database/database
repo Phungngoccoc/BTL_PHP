@@ -9,7 +9,8 @@ CREATE TABLE TAIKHOAN (
 CREATE TABLE NHACUNGCAP (
     MANCC VARCHAR(5) PRIMARY KEY,
     TENNCC VARCHAR(255) NOT NULL,
-    DIACHINCC VARCHAR(255) NOT NULL
+    DIACHINCC VARCHAR(255) NOT NULL,
+    EMAIL VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE HANGHOA (
@@ -33,26 +34,26 @@ CREATE TABLE DONHANG (
     TRANGTHAI VARCHAR(50)
 );
 
-INSERT INTO NHACUNGCAP (MANCC, TENNCC, DIACHINCC) VALUES
-('NCC01', 'Sony', 'Hà Nội'),
-('NCC02', 'Apple', 'Hà Nam'),
-('NCC03', 'Toshiba', 'Thái Nguyên'),
-('NCC04', 'Yamaha', 'Hải Dương'),
-('NCC05', 'HP', 'PHÚ THỌ');
+INSERT INTO NHACUNGCAP (MANCC, TENNCC, DIACHINCC, EMAIL) VALUES
+('NCC01', 'Sony', 'Hà Nội','ngoc@gmail.com'),
+('NCC02', 'Apple', 'Hà Nam','ngoc@gmail.com'),
+('NCC03', 'Toshiba', 'Thái Nguyên','ngoc@gmail.com'),
+('NCC04', 'Yamaha', 'Hải Dương','ngoc@gmail.com'),
+('NCC05', 'HP', 'PHÚ THỌ','ngoc@gmail.com');
 
 -- Thêm dữ liệu vào bảng HANGHOA
 INSERT INTO HANGHOA (MAHANG, TENHANG, DONGIA, DONVITINH, SOLUONG, MANCC) VALUES
-('HH01', 'IPHONE 15 PROMAX', 30000000.00, 'cái', 100, 'NCC02'),
-('HH02', 'TỦ LẠNH', 15000000.00, 'cái', 200, 'NCC02'),
-('HH03', 'Hàng hóa 3', 20000.00, 'kg', 150, 'NCC03'),
-('HH04', 'Hàng hóa 4', 25000.00, 'lít', 80, 'NCC04'),
-('HH05', 'Hàng hóa 5', 30000.00, 'cm', 50, 'NCC05'),
-('HH06', 'Hàng hóa 6', 12000.00, 'mét', 60, 'NCC01'),
-('HH07', 'Hàng hóa 7', 18000.00, 'cái', 90, 'NCC02'),
-('HH08', 'Hàng hóa 8', 22000.00, 'kg', 110, 'NCC03'),
-('HH09', 'Hàng hóa 9', 27000.00, 'lít', 75, 'NCC04'),
-('HH10', 'Hàng hóa 10', 32000.00, 'mg', 65, 'NCC05'),
-('HH11', 'Hàng hóa 20', 33000.00, 'cm', 45, 'NCC05');
+('HH01', 'IPHONE 15 PROMAX', 3000000000, 'cái', 100, 'NCC02'),
+('HH02', 'Tủ Lạnh', 1500000000, 'cái', 200, 'NCC02'),
+('HH03', 'Hàng hóa 3', 2000000, 'kg', 150, 'NCC03'),
+('HH04', 'Hàng hóa 4', 2500000, 'lít', 80, 'NCC04'),
+('HH05', 'Hàng hóa 5', 3000000, 'cm', 50, 'NCC05'),
+('HH06', 'Hàng hóa 6', 1200000, 'mét', 60, 'NCC01'),
+('HH07', 'Hàng hóa 7', 1800000, 'cái', 90, 'NCC02'),
+('HH08', 'Hàng hóa 8', 2200000, 'kg', 110, 'NCC03'),
+('HH09', 'Hàng hóa 9', 2700000, 'lít', 75, 'NCC04'),
+('HH10', 'Hàng hóa 10', 3200000, 'mg', 65, 'NCC05'),
+('HH11', 'Hàng hóa 20', 3300000, 'cm', 45, 'NCC05');
 
 -- Thêm tài khoản
 INSERT INTO TAIKHOAN (MATK, TENTK, MATKHAU) VALUES ('TK001', 'admin', '123456');
