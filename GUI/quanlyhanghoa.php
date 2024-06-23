@@ -45,7 +45,7 @@
 <?php
 include "../BLL/HANGHOABLL.php";
 include "../BLL/NCCBLL.php";
-$result = null;
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -72,6 +72,10 @@ function validateForm($data) {
         return empty($errors);
     } elseif (preg_match($specialCharPattern, $data['mahang']) || strpos($data['mahang'], ' ') !== false) {
         $errors['mahang'] = 'Mã hàng không được chứa ký tự đặc biệt hoặc khoảng trắng.';
+        return empty($errors);
+    }else if(strlen($data['mahang']) > 5)
+    {
+        $errors['mahang'] = 'Mã hàng không được dài hơn 5 kí tự.';
         return empty($errors);
     }
 
@@ -111,17 +115,11 @@ function validateForm($data) {
         return empty($errors);
     }
     
-    
+    return true;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'] ?? '';
-    
-    if ($action == 'Tìm') {
-
-        $search = $_POST['search'] ?? '';
-        $result = $bll->getHangHoa($search);
-    } else {
         $mahang = strtoupper(trim($_POST['mahang'] ?? ''));
         $tenhang = ucwords(strtolower(trim($_POST['tenhang'] ?? '')));
         $dongia = trim($_POST['dongia'] ?? '');
@@ -137,10 +135,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'donvitinh' => $donvitinh,
             'mancc' => $mancc,
         ];
-
-        if (validateForm($formData)) {
-            if ($action == 'Thêm') {
-                $result = $bll->getmahang($mahang);
+        
+        
+        if ($action == 'Thêm') {
+            $result = $bll->getmahang($mahang);
+            if (validateForm($formData)) {
                 if ($result->num_rows > 0) {
                     echo "<script>alert('Mã hàng đã tồn tại!');</script>";
                 } else {
@@ -150,8 +149,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<script>alert('Thêm hàng thất bại!');</script>";
                     }
                 }
-            } elseif ($action == 'Sửa') {
-                $result = $bll->getmahang($mahang);
+            } else {
+                // Display validation errors
+                foreach ($errors as $field => $error) {
+                    echo "<script>alert('$error');</script>";
+                }
+            }
+            
+        } elseif ($action == 'Sửa') {
+            $result = $bll->getmahang($mahang);
+            if (validateForm($formData)) {
                 if ($result->num_rows > 0) {
                     if ($bll->editHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
                         echo "<script>alert('Sửa hàng thành công!');</script>";
@@ -161,8 +168,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     echo "<script>alert('Mã hàng không tồn tại!');</script>";
                 }
-            } elseif ($action == 'Xóa') {
-                $result = $bll->getmahang($mahang);
+            } else {
+                // Display validation errors
+                foreach ($errors as $field => $error) {
+                    echo "<script>alert('$error');</script>";
+                }
+            }
+            
+        } elseif ($action == 'Xóa') {
+            $result = $bll->getmahang($mahang);
+            if (validateForm($formData)) {
                 if ($result->num_rows > 0) {
                     if ($bll->removeHangHoa($mahang)) {
                         echo "<script>alert('Xóa hàng thành công!');</script>";
@@ -172,18 +187,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     echo "<script>alert('Mã hàng không tồn tại!');</script>";
                 }
+            } else {
+                // Display validation errors
+                foreach ($errors as $field => $error) {
+                    echo "<script>alert('$error');</script>";
+                }
             }
-        } else {
-            // Display validation errors
-            foreach ($errors as $field => $error) {
-                echo "<script>alert('$error');</script>";
-            }
+            
         }
     }
-} else {
-    $result = $bll->getHangHoa();
-}
-
+    $search = isset($_POST['search']) ? $_POST['search'] : '';
+    $result = $bll->getHangHoa($search);
 ?>
 
 <form style="margin-top:50px;margin-left:100px" method="post">

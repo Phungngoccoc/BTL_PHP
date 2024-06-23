@@ -1,243 +1,263 @@
-<<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Management</title>
-    <h1>QUẢN LÍ HÓA ĐƠN </h1>
-    <style>
-        /* Google Font Import */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Giao Diện Trang Chủ</title>
+<link rel="stylesheet" href="quanlyhanghoa.css">
+<style>
+    .selected-row {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+<script>
+    function selectRow(row) {
+        var selected = document.querySelector('.selected-row');
+        if (selected) {
+            selected.classList.remove('selected-row');
         }
+        row.classList.add('selected-row');
+        var cells = row.getElementsByTagName('td');
+        document.getElementById('mahang').value = cells[0].innerText;
+        document.getElementById('tenhang').value = cells[1].innerText;
 
-        .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
+        // Chuyển đổi đơn giá thành số nguyên
+        var dongia = parseFloat(cells[2].innerText).toFixed(0);
+        document.getElementById('dongia').value = dongia;
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus {
-            border-color: #007BFF;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        /* Media Queries for Responsiveness */
-        @media (max-width: 600px) {
-            .container {
-                width: 95%;
-                padding: 20px;
-            }
-
-            button {
-                padding: 12px;
-                font-size: 14px;
-            }
-        }
-    </style>
+        document.getElementById('soluong').value = cells[3].innerText;
+        document.getElementById('donvitinh').value = cells[4].innerText;
+        document.getElementById('mancc').value = cells[5].innerText;
+    }
+</script>
 </head>
 <body>
-    <div class="container">
-        <h1>Order Management</h1>
-        <form id="orderForm" method="post" action="add_order.php">
-            <div class="form-group">
-                <label for="orderID">Mã đơn hàng</label>
-                <input type="text" id="MADONHANG" name="MADONHANG" required>
-            </div>
-            <div class="form-group">
-                <label for="MAHANG">Mã Hàng</label>
-                <input type="text" id="MAHANG" name="MAHANG" required>
-            </div>
-            <div class="form-group">
-                <label for="TENKHACHHANG">Tên Khách Hàng</label>
-                <input type="text" id="TENKNHACHHANG" name="TENKHACHHANG" required>
-            </div>
-            <div class="form-group">
-                <label for="SOLUONG">SOLUONG</label>
-                <input type="number" id="SOLUONG" name="SOLUONG" required>
-            </div>
-            <div class="form-group">
-                <label for="DIACHIHANG">Địa chỉ hàng</label>
-                <input type="text" id="DIACHIHANG" name="DIACHIHANG" required>
-            </div>
-            <div class="form-group">
-                <label for="TRANGTHAI">Trạng Thái</label>
-                <input type="text" id="TRANGTHAI" name="TRANGTHAI" required>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-        
-        <form id="searchForm" method="get" action="search_order.php" style="margin-top: 20px;">
-            <div class="form-group">
-                <label for="search">Search Orders</label>
-                <input type="text" id="search" name="search" required>
-            </div>
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "quanlihanghoa";
+<header>
+    <h1>QUẢN LÝ ĐƠN HÀNG</h1>
+</header>
+<div class="search-bar">
+    <form method="post">
+        <input type="text" name="search" placeholder="Nhập tên hàng hóa">
+        <button type="submit" name="action" value="Tìm">Tìm</button>
+    </form>
+</div>
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    ?>
 <?php
+include "../BLL/HANGHOABLL.php";
+include "../BLL/NCCBLL.php";
+
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "quanlihanghoa";
+$dbname = "quanlyhanghoa";
 
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
+$bll = new HANGHOABLL($servername, $username, $password, $dbname);
+$blll = new NCCBLL($servername, $username, $password, $dbname);
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Fetch supplier data
+$suppliers = $blll->getAllNhaCungCap();
+
+$errors = [];
+
+function validateForm($data) {
+    global $errors;
+    
+    // Special characters pattern
+    $specialCharPattern = '/[!@#\$%\^\&*\)\(+=._-]+/';
+    // Number pattern
+    $numberPattern = '/^[0-9]+$/';
+    
+    if (empty($data['mahang'])) {
+        $errors['mahang'] = 'Mã hàng không được để trống.';
+        return empty($errors);
+    } elseif (preg_match($specialCharPattern, $data['mahang']) || strpos($data['mahang'], ' ') !== false) {
+        $errors['mahang'] = 'Mã hàng không được chứa ký tự đặc biệt hoặc khoảng trắng.';
+        return empty($errors);
+    }else if(strlen($data['mahang']) > 5)
+    {
+        $errors['mahang'] = 'Mã hàng không được dài hơn 5 kí tự.';
+        return empty($errors);
+    }
+
+    if (empty($data['tenhang'])) {
+        $errors['tenhang'] = 'Tên hàng không được để trống.';
+        return empty($errors);
+    } elseif (preg_match($specialCharPattern, $data['tenhang'])) {
+        $errors['tenhang'] = 'Tên hàng không được chứa ký tự đặc biệt.';
+        return empty($errors);
+    }
+
+    if (empty($data['dongia'])) {
+        $errors['dongia'] = 'Đơn giá không được để trống.';
+    } elseif (!preg_match($numberPattern, $data['dongia'])) {
+        $errors['dongia'] = 'Đơn giá phải là số.';
+        return empty($errors);
+    }
+
+    if (empty($data['soluong'])) {
+        $errors['soluong'] = 'Số lượng không được để trống.';
+        return empty($errors);
+    } elseif (!preg_match($numberPattern, $data['soluong'])) {
+        $errors['soluong'] = 'Số lượng phải là số.';
+        return empty($errors);
+    }
+
+    if (empty($data['donvitinh'])) {
+        $errors['donvitinh'] = 'Đơn vị tính không được để trống.';
+        return empty($errors);
+    } elseif (preg_match($specialCharPattern, $data['donvitinh'])) {
+        $errors['donvitinh'] = 'Đơn vị tính không được chứa ký tự đặc biệt.';
+        return empty($errors);
+    }
+
+    if (empty($data['mancc'])) {
+        $errors['mancc'] = 'Mã nhà cung cấp không được để trống.';
+        return empty($errors);
+    }
+    
+    return true;
 }
-?>
-
-
-<?php
-include 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $MAHANG = $_POST['MAHANG'];
-    $TENKHACHHANG = $_POST['TENKHACHHANG'];
-    $SOLUONG = $_POST['SOLUONG'];
-    $DIACHIHANG = $_POST['DIACHIHANG'];
-    $TRANGTHAI = $_POST['TRANGTHAI'];
+    $action = $_POST['action'] ?? '';
+        $mahang = strtoupper(trim($_POST['mahang'] ?? ''));
+        $tenhang = ucwords(strtolower(trim($_POST['tenhang'] ?? '')));
+        $dongia = trim($_POST['dongia'] ?? '');
+        $soluong = trim($_POST['soluong'] ?? '');
+        $donvitinh = ucwords(strtolower(trim($_POST['donvitinh'] ?? '')));
+        $mancc = trim($_POST['mancc'] ?? '');
 
-    $sql = "INSERT INTO DONHANG (MAHANG, TENKHACHHANG, SOLUONG, DIACHIHANG, TRANGTHAI) 
-            VALUES ('$MAHANG', '$TENKHACHHANG', '$SOLUONG', '$DIACHIHANG', '$TRANGTHAI')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New order created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $formData = [
+            'mahang' => $mahang,
+            'tenhang' => $tenhang,
+            'dongia' => $dongia,
+            'soluong' => $soluong,
+            'donvitinh' => $donvitinh,
+            'mancc' => $mancc,
+        ];
+        
+        
+        if ($action == 'Thêm') {
+            $result = $bll->getmahang($mahang);
+            if (validateForm($formData)) {
+                if ($result->num_rows > 0) {
+                    echo "<script>alert('Mã hàng đã tồn tại!');</script>";
+                } else {
+                    if ($bll->addHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
+                        echo "<script>alert('Thêm hàng thành công!');</script>";
+                    } else {
+                        echo "<script>alert('Thêm hàng thất bại!');</script>";
+                    }
+                }
+            } else {
+                // Display validation errors
+                foreach ($errors as $field => $error) {
+                    echo "<script>alert('$error');</script>";
+                }
+            }
+            
+        } elseif ($action == 'Sửa') {
+            $result = $bll->getmahang($mahang);
+            if (validateForm($formData)) {
+                if ($result->num_rows > 0) {
+                    if ($bll->editHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc)) {
+                        echo "<script>alert('Sửa hàng thành công!');</script>";
+                    } else {
+                        echo "<script>alert('Sửa hàng thất bại!');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Mã hàng không tồn tại!');</script>";
+                }
+            } else {
+                // Display validation errors
+                foreach ($errors as $field => $error) {
+                    echo "<script>alert('$error');</script>";
+                }
+            }
+            
+        } elseif ($action == 'Xóa') {
+            $result = $bll->getmahang($mahang);
+            if (validateForm($formData)) {
+                if ($result->num_rows > 0) {
+                    if ($bll->removeHangHoa($mahang)) {
+                        echo "<script>alert('Xóa hàng thành công!');</script>";
+                    } else {
+                        echo "<script>alert('Xóa hàng thất bại!');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Mã hàng không tồn tại!');</script>";
+                }
+            } else {
+                // Display validation errors
+                foreach ($errors as $field => $error) {
+                    echo "<script>alert('$error');</script>";
+                }
+            }
+            
+        }
     }
-
-    $conn->close();
-}
+    $search = isset($_POST['search']) ? $_POST['search'] : '';
+    $result = $bll->getHangHoa($search);
 ?>
 
-<?php
-include 'config.php';
+<form style="margin-top:50px;margin-left:100px" method="post">
+    <label style="font-size: 20px;">Mã hàng:</label>
+    <input type="text" id="mahang" name="mahang" style="width: 180px" value="<?php echo isset($mahang) ? $mahang : ''; ?>">
+    <label style="font-size: 20px;margin-left:80px">Tên hàng:</label>
+    <input type="text" id="tenhang" name="tenhang" style="width: 180px" value="<?php echo isset($tenhang) ? $tenhang : ''; ?>">
+    <br><br>
+    <label style="font-size: 20px;">Đơn giá:</label>
+    <input type="text" id="dongia" name="dongia" style="width: 180px;margin-left:6px" value="<?php echo isset($dongia) ? $dongia : ''; ?>">
+    <label style="font-size: 20px;margin-left:80px">Số lượng:</label>
+    <input type="text" id="soluong" name="soluong" style="width: 180px;margin-left:2px" value="<?php echo isset($soluong) ? $soluong : ''; ?>">
+    <br><br>
+    <label style="font-size: 20px;">Đơn vị tính:</label>
+    <input type="text" id="donvitinh" name="donvitinh" style="width: 158px;margin-left:0px" value="<?php echo isset($donvitinh) ? $donvitinh : ''; ?>">
+    <label style="font-size: 20px;margin-left:80px">Mã NCC:</label>
+    <select id="mancc" name="mancc" style="width: 180px;margin-left:2px">
+        <?php
+        if ($suppliers->num_rows > 0) {
+            while ($row = $suppliers->fetch_assoc()) {
+                $selected = isset($mancc) && $mancc == $row['mancc'] ? 'selected' : '';
+                echo "<option value='" . $row["mancc"] . "' $selected>" . $row["mancc"] . "</option>";
+            }
+        }
+        ?>
+    </select>
+    <br><br><br>
+    <div class="search-bar">
+        <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
+        <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
+    </div>
+</form>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $MADONHANG = $_POST['MADONHANG'];
-    $MAHANG = $_POST['MAHANG'];
-    $TENKHACHHANG = $_POST['TENKHACHHANG'];
-    $SOLUONG = $_POST['SOLUONG'];
-    $DIACHIHANG = $_POST['DIACHIHANG'];
-    $TRANGTHAI = $_POST['TRANGTHAI'];
-
-    $sql = "UPDATE DONHANG SET MAHANG='$MAHANG', TENKHACHHANG='$TENKHACHHANG', SOLUONG='$SOLUONG', DIACHIHANG='$DIACHIHANG', TRANGTHAI='$TRANGTHAI' 
-            WHERE MADONHANG='$MADONHANG'";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Order updated successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
-
-<?php
-include 'config.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $MADONHANG = $_POST['MADONHANG'];
-
-    $sql = "DELETE FROM DONHANG WHERE MADONHANG='$MADONHANG'";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Order deleted successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
-<?php
-include 'config.php';
-
-$search = $_GET['search'];
-$sql = "SELECT * FROM DONHANG WHERE MAHANG LIKE '%$search%' OR TENKHACHHANG LIKE '%$search%'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "MADONHANG: " . $row["MADONHANG"] . " - MAHANG: " . $row["MAHANG"] . " - TENKHACHHANG: " . $row["TENKHACHHANG"] . " - SOLUONG: " . $row["SOLUONG"] . " - DIACHIHANG: " . $row["DIACHIHANG"] . " - TRANGTHAI: " . $row["TRANGTHAI"] . "<br>";
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
-?>
-
-
+<div style="margin-top:50px;margin-left:20px;margin-right:20px">
+    <table border="1" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;border-collapse: collapse">
+        <tr>
+            <th style="width:100px;background-color: #4CAF50;color: white;">Mã hàng</th>
+            <th style="width:300px;background-color: #4CAF50;color: white">Tên hàng</th>
+            <th style="width:200px;background-color: #4CAF50;color: white">Đơn giá</th>
+            <th style="width:200px;background-color: #4CAF50;color: white">Số lượng</th>
+            <th style="width:200px;background-color: #4CAF50;color: white">Đơn vị tính</th>
+            <th style="width:100px;background-color: #4CAF50;color: white">Mã NCC</th>
+        </tr>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr onclick='selectRow(this)'>";
+                echo "<td>" . strtoupper($row["mahang"]) . "</td>";
+                echo "<td>" . ucwords(strtolower($row["tenhang"])) . "</td>";
+                echo "<td>" . $row["dongia"] . "</td>";
+                echo "<td>" . $row["soluong"] . "</td>";
+                echo "<td>" . ucwords(strtolower($row["donvitinh"])) . "</td>";
+                echo "<td>" . $row["mancc"] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='6'>Không có dữ liệu</td></tr>";
+        }
+        ?>
+    </table>
+</div>
 </body>
 </html>
