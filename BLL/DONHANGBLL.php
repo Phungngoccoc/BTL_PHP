@@ -1,35 +1,37 @@
 <?php
-include "../DAL/HOADONDAL.php";
+include "../DAL/DONHANGDAL.php";
 
-class HANGHOABLL {
+class DONHANGBLL {
     private $dal;
 
     public function __construct($servername, $username, $password, $dbname) {
-        $this->dal = new HANGHOADAL($servername, $username, $password, $dbname);
+        $this->dal = new DONHANGDAL($servername, $username, $password, $dbname);
     }
 
-    public function getHangHoa($search = '') {
-        if ($search) {
-            return $this->dal->searchHangHoa($search);
+    public function getDonHang($search) {
+        if (!empty($search)) {
+            return $this->dal->searchDonHang($search);
         } else {
-            return $this->dal->getAllHangHoa();
+            return $this->dal->getAllDonHang();
         }
     }
-    public function getmahang($mahang) {
-        return $this->dal->getmahang($mahang);
+
+    
+
+    public function getmadonhang($mahang) {
+        return $this->dal->getmadonhang($mahang);
     }
 
-    public function addHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc) {
-        return $this->dal->insertHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc);
+    public function addDonHang($madonhang, $mahang, $nguoidathang, $soluong, $ngaydathang, $loai) {
+        return $this->dal->insertDonHang($madonhang, $mahang, $nguoidathang, $soluong, $ngaydathang, $loai);
     }
 
-    public function editHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc) {
-        return $this->dal->updateHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc);
+    public function editDonHang($madonhang, $soluong, $ngaydathang, $loai) {
+        return $this->dal->updateHangHoa($madonhang, $soluong, $ngaydathang, $loai);
     }
+    
 
-    public function removeHangHoa($mahang) {
-        return $this->dal->deleteHangHoa($mahang);
-    }
+    
     
 }
 ?>

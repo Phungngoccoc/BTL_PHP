@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dangnhap</title>
-    <link rel="stylesheet" href="dangnhap.css">
+    <link rel="stylesheet" href="dangnhapp.css" >
 </head>
 <body>
     <h1>ĐĂNG NHẬP</h1>
     <form method="post" action="">
-        <div>
+        <div style="border: 1px solid black;width: 400px;margin: 0 auto; margin-top: 50px; ">
             <br>
             <span>Tên người dùng:</span><br>
             <input type="text" id="tentk" name="tentk"><br>
@@ -65,12 +65,12 @@
                 echo "<script>alert('Đăng nhập thành công!');</script>";
                 echo "<script>window.location.href = 'trangchu.php';</script>";
             } else {
-                echo "Tên người dùng hoặc mật khẩu không đúng!";
+                echo "<script>alert('Tên người dùng hoặc mật khẩu không đúng!');</script>";
             }
 
             $stmt->close();
         } else {
-            echo "Tên người dùng hoặc mật khẩu không hợp lệ!";
+            echo "<script>alert('Tên người dùng hoặc mật khẩu không hợp lệ!');</script>";
         }
     }
     

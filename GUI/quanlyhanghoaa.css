@@ -70,6 +70,7 @@ header {
     width: 300px;
     margin-left: 200px;
     height: 25px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .search-bar button {
@@ -79,6 +80,8 @@ header {
     cursor: pointer;
     height: 39px;
     width: 65px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
 }
 
 .user-info .username {

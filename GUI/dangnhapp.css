@@ -2,7 +2,7 @@ h1{
     text-align: center;
 }
 div {
-    border: 1px solid black;
+    border: none;
     width: 400px;
     margin: 0 auto; 
     margin-top: 50px; 

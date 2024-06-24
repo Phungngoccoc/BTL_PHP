@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Giao Diện Trang Chủ</title>
-<link rel="stylesheet" href="quanlyhanghoa.css">
+<link rel="stylesheet" href="quanlyhanghoaa.css">
 <style>
     .selected-row {
         background-color: #4CAF50;
@@ -31,13 +31,13 @@
     }
 </script>
 </head>
-<body>
+<body >
 <header>
     <h1>QUẢN LÝ THÔNG TIN HÀNG</h1>
 </header>
 <div class="search-bar">
     <form method="post">
-        <input type="text" name="search" placeholder="Nhập tên hàng hóa">
+        <input type="text" name="search" placeholder="Nhập tên hàng hóa" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;">
         <button type="submit" name="action" value="Tìm">Tìm</button>
     </form>
 </div>
@@ -202,19 +202,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form style="margin-top:50px;margin-left:100px" method="post">
     <label style="font-size: 20px;">Mã hàng:</label>
-    <input type="text" id="mahang" name="mahang" style="width: 180px" value="<?php echo isset($mahang) ? $mahang : ''; ?>">
+    <input type="text" id="mahang" name="mahang" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($mahang) ? $mahang : ''; ?>">
     <label style="font-size: 20px;margin-left:80px">Tên hàng:</label>
-    <input type="text" id="tenhang" name="tenhang" style="width: 180px" value="<?php echo isset($tenhang) ? $tenhang : ''; ?>">
+    <input type="text" id="tenhang" name="tenhang" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($tenhang) ? $tenhang : ''; ?>">
     <br><br>
     <label style="font-size: 20px;">Đơn giá:</label>
-    <input type="text" id="dongia" name="dongia" style="width: 180px;margin-left:6px" value="<?php echo isset($dongia) ? $dongia : ''; ?>">
+    <input type="text" id="dongia" name="dongia" style="width: 180px;margin-left:6px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($dongia) ? $dongia : ''; ?>">
     <label style="font-size: 20px;margin-left:80px">Số lượng:</label>
-    <input type="text" id="soluong" name="soluong" style="width: 180px;margin-left:2px" value="<?php echo isset($soluong) ? $soluong : ''; ?>">
+    <input type="text" id="soluong" name="soluong" style="width: 180px;margin-left:2px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($soluong) ? $soluong : ''; ?>">
     <br><br>
     <label style="font-size: 20px;">Đơn vị tính:</label>
-    <input type="text" id="donvitinh" name="donvitinh" style="width: 158px;margin-left:0px" value="<?php echo isset($donvitinh) ? $donvitinh : ''; ?>">
+    <input type="text" id="donvitinh" name="donvitinh" style="width: 158px;margin-left:0px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($donvitinh) ? $donvitinh : ''; ?>">
     <label style="font-size: 20px;margin-left:80px">Mã NCC:</label>
-    <select id="mancc" name="mancc" style="width: 180px;margin-left:2px">
+    <select id="mancc" name="mancc" style="width: 180px;margin-left:2px ;font-family: 'Times New Roman', Times, serif;font-size: 18px;">
         <?php
         if ($suppliers->num_rows > 0) {
             while ($row = $suppliers->fetch_assoc()) {
@@ -232,8 +232,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </form>
 
-<div style="margin-top:50px;margin-left:20px;margin-right:20px">
-    <table border="1" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;border-collapse: collapse">
+<div style="margin-top:50px;margin-left:20px;margin-right:20px;overflow-y: auto;height: 250px;">
+    <table border="1" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;border-collapse: collapse;">
         <tr>
             <th style="width:100px;background-color: #4CAF50;color: white;">Mã hàng</th>
             <th style="width:300px;background-color: #4CAF50;color: white">Tên hàng</th>
@@ -259,6 +259,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
     </table>
+    <br><br>
 </div>
 </body>
 </html>

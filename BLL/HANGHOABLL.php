@@ -30,6 +30,15 @@ class HANGHOABLL {
     public function removeHangHoa($mahang) {
         return $this->dal->deleteHangHoa($mahang);
     }
-    
+    public function getAllMaHangHoa() {
+        return $this->dal->getAllHangHoa();
+    }
+    public function getSoLuongHangHoa($mahang) {
+        return $this->dal->getSoLuongHangHoa($mahang);
+    }
+    public function updateSoLuongHangHoa($mahang, $soluong)
+    {
+        return $this->dal->updateSoLuongHangHoa($mahang, $soluong);
+    }
 }
 ?>

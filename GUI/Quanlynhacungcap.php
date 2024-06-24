@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Quản lý nhà cung cấp</title>
-    <link rel="stylesheet" href="quanlynhacungcap.css">
+    <link rel="stylesheet" href="quanlyhanghoaa.css">
     <style>
     .selected-row {
         background-color:#4CAF50;
@@ -35,7 +35,7 @@
     </header>
     <div class="search-bar">
         <form method="post">
-            <input type="text" name="search" placeholder="Nhập tên nhà cung cấp">
+            <input type="text" name="search" placeholder="Nhập tên nhà cung cấp" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;">
             <button type="submit">Tìm</button>
         </form>
     </div>
@@ -83,11 +83,11 @@
     ?>
 
     <form style="margin-top:50px;margin-left:100px" method="post">
-        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px" required>
-        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px" required>
+        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
+        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
         <br><br>
-        <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 148px;margin-left:0px" required>
-        <label style="font-size: 20px;margin-left:80px">Email NCC:</label> <input type="email" id="email" name="email" style="width: 164px;margin-left:0px" required>
+        <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 148px;margin-left:0px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
+        <label style="font-size: 20px;margin-left:80px">Email NCC:</label> <input type="email" id="email" name="email" style="width: 164px;margin-left:0px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
         <div style="margin-top:50px" class="search-bar">
             <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
             <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
@@ -95,7 +95,7 @@
         </div>
     </form>
 
-    <div style="margin-top:50px;margin-left:20px;margin-right:20px">
+    <div style="margin-top:50px;margin-left:20px;margin-right:20px;overflow-y: auto;height: 250px;">
     <table border="158px" cellpadding="auto" cellspacing="auto" style="border: 0px solid black;text-align: center;border-collapse: collapse">
             <tr>
                 <th style="width:100px;background-color: #4CAF50;color: white;">Mã NCC</th>

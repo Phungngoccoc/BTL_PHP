@@ -26,8 +26,7 @@ CREATE TABLE HANGHOA (
 CREATE TABLE DONHANG (
     MADONHANG VARCHAR(5) PRIMARY KEY,
     MAHANG VARCHAR(5) NOT NULL,
-    MANCC VARCHAR(5),
-    CONSTRAINT FK_DH_NCC FOREIGN KEY (MANCC) REFERENCES NHACUNGCAP(MANCC),
+    NGUOIDATHANG VARCHAR(50),
     CONSTRAINT FK_DH_HH FOREIGN KEY (MAHANG) REFERENCES HANGHOA(MAHANG),
     SOLUONG INT,
     NGAYDATHANG DATE,
@@ -35,29 +34,49 @@ CREATE TABLE DONHANG (
 );
 
 INSERT INTO NHACUNGCAP (MANCC, TENNCC, DIACHINCC, EMAIL) VALUES
-('NCC01', 'Sony', 'Hà Nội','ngoc@gmail.com'),
-('NCC02', 'Apple', 'Hà Nam','ngoc@gmail.com'),
-('NCC03', 'Toshiba', 'Thái Nguyên','ngoc@gmail.com'),
-('NCC04', 'Yamaha', 'Hải Dương','ngoc@gmail.com'),
-('NCC05', 'HP', 'PHÚ THỌ','ngoc@gmail.com');
-
+('NCC01', 'Sony', 'Hà Nội','ngoc@gmail.com'), 
+('NCC02', 'Samsung', 'Hồ Chí Minh', 'contact@samsung.com'),
+('NCC03', 'LG', 'Đà Nẵng', 'info@lg.com'),
+('NCC04', 'Apple', 'California', 'support@apple.com'),
+('NCC05', 'Microsoft', 'Redmond', 'info@microsoft.com'),
+('NCC06', 'HP', 'Texas', 'support@hp.com'),
+('NCC07', 'Dell', 'Austin', 'contact@dell.com'),
+('NCC08', 'Asus', 'Taipei', 'info@asus.com'),
+('NCC09', 'Lenovo', 'Beijing', 'support@lenovo.com'),
+('NCC10', 'Acer', 'New Taipei City', 'info@acer.com'),
+('NCC11', 'IBM', 'Armonk', 'contact@ibm.com');
 -- Thêm dữ liệu vào bảng HANGHOA
 INSERT INTO HANGHOA (MAHANG, TENHANG, DONGIA, DONVITINH, SOLUONG, MANCC) VALUES
-('HH01', 'IPHONE 15 PROMAX', 3000000000, 'cái', 100, 'NCC02'),
-('HH02', 'Tủ Lạnh', 1500000000, 'cái', 200, 'NCC02'),
-('HH03', 'Hàng hóa 3', 2000000, 'kg', 150, 'NCC03'),
-('HH04', 'Hàng hóa 4', 2500000, 'lít', 80, 'NCC04'),
-('HH05', 'Hàng hóa 5', 3000000, 'cm', 50, 'NCC05'),
-('HH06', 'Hàng hóa 6', 1200000, 'mét', 60, 'NCC01'),
-('HH07', 'Hàng hóa 7', 1800000, 'cái', 90, 'NCC02'),
-('HH08', 'Hàng hóa 8', 2200000, 'kg', 110, 'NCC03'),
-('HH09', 'Hàng hóa 9', 2700000, 'lít', 75, 'NCC04'),
-('HH10', 'Hàng hóa 10', 3200000, 'mg', 65, 'NCC05'),
-('HH11', 'Hàng hóa 20', 3300000, 'cm', 45, 'NCC05');
+('HH01', 'IPHONE 15 PROMAX', 30000000, 'cái', 100, 'NCC02'),
+('HH02', 'Galaxy S22 Ultra', 28000000, 'cái', 80, 'NCC02'),
+('HH03', 'LG OLED TV', 35000000, 'chiếc', 50, 'NCC03'),
+('HH04', 'MacBook Pro 2023', 50000000, 'chiếc', 30, 'NCC04'),
+('HH05', 'Surface Laptop 5', 35000000, 'chiếc', 40, 'NCC05'),
+('HH06', 'HP Spectre x360', 25000000, 'chiếc', 60, 'NCC06'),
+('HH07', 'Dell XPS 15', 28000000, 'chiếc', 70, 'NCC07'),
+('HH08', 'Asus ROG Strix G15', 30000000, 'chiếc', 45, 'NCC08'),
+('HH09', 'Lenovo ThinkPad X1 Carbon', 32000000, 'chiếc', 55, 'NCC09'),
+('HH10', 'Acer Predator Helios 700', 40000000, 'chiếc', 25, 'NCC10'),
+('HH11', 'IBM z15 Mainframe', 80000000, 'cái', 10, 'NCC11'),
+('HH12', 'Sony A7R IV', 45000000, 'chiếc', 35, 'NCC01'),
+('HH13', 'Samsung QLED 8K TV', 60000000, 'chiếc', 20, 'NCC02'),
+('HH14', 'LG Gram 17', 30000000, 'chiếc', 50, 'NCC03'),
+('HH15', 'iPhone SE 2024', 15000000, 'cái', 120, 'NCC04');
+
 
 -- Thêm tài khoản
 INSERT INTO TAIKHOAN (MATK, TENTK, MATKHAU) VALUES ('TK001', 'admin', '123456');
 
 -- Thêm đơn hàng
-INSERT INTO DONHANG (MADONHANG, MAHANG, MANCC, SOLUONG, NGAYDATHANG, LOAI) VALUES
-('DH001', 'HH01', 'NCC01', 2,'09/11/2003','Xuất');
+INSERT INTO DONHANG (MADONHANG, MAHANG, NGUOIDATHANG, SOLUONG, NGAYDATHANG, LOAI) VALUES
+('DH001', 'HH01', 'PHÙNG THẾ NGỌC', 2,'2024-06-06','Xuất'),
+('DH002', 'HH02', 'NGUYỄN VĂN A', 5, '2024-06-07', 'Nhập'),
+('DH003', 'HH03', 'NGUYỄN THỊ B', 3, '2024-06-08', 'Xuất'),
+('DH004', 'HH04', 'TRẦN VĂN C', 4, '2024-06-09', 'Nhập'),
+('DH005', 'HH05', 'PHẠM THỊ D', 2, '2024-06-10', 'Xuất'),
+('DH006', 'HH06', 'HOÀNG VĂN E', 6, '2024-06-11', 'Nhập'),
+('DH007', 'HH07', 'LÊ THỊ F', 3, '2024-06-12', 'Xuất'),
+('DH008', 'HH08', 'NGÔ VĂN G', 7, '2024-06-13', 'Nhập'),
+('DH009', 'HH09', 'LÊ VĂN H', 4, '2024-06-14', 'Xuất'),
+('DH010', 'HH10', 'VŨ THỊ K', 3, '2024-06-15', 'Nhập'),
+('DH011', 'HH11', 'TRẦN VĂN L', 2, '2024-06-16', 'Xuất');

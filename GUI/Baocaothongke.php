@@ -5,11 +5,7 @@
 <title>giaodientrangchu</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
+        font-family: 'Times New Roman', Times, serif;
     }
     th, td {
         border: 1px solid #ddd;
@@ -21,7 +17,7 @@
         color: white;
     }
     table {
-        width: 50%;
+        width: 100;
         margin: auto;
         border-collapse: collapse;
     }   
@@ -40,6 +36,7 @@
         margin: 20px auto;
         padding: 10px 20px;
         font-size: 16px;
+        font-family: 'Times New Roman', Times, serif;
         background-color: #4CAF50;
         color: white;
         border: none;
@@ -101,16 +98,20 @@
         $sql = "SELECT HANGHOA.MAHANG, HANGHOA.TENHANG, SUM(DONHANG.SOLUONG) AS SODONHANG, SUM(DONHANG.SOLUONG * HANGHOA.DONGIA) AS DOANHTHU
                 FROM HANGHOA
                 JOIN DONHANG ON HANGHOA.MAHANG = DONHANG.MAHANG
+                WHERE loai = 'Xuất  '
                 GROUP BY HANGHOA.MAHANG";
         $result = $conn->query($sql);
 
         // Tạo bảng HTML với dữ liệu từ cơ sở dữ liệu
         echo "<table>";
-        echo "<caption>Thống Kê Số Lượng Mặt Hàng Trong Đơn Hàng Và Doanh Thu</caption>";
-        echo "<tr><th>Mã hàng</th><th>Tên hàng</th><th>Số đơn hàng</th><th>Doanh thu</th></tr>";
+        echo "<caption>Thống Kê Doanh Thu</caption>";
+        echo "<tr><th>Mã hàng</th><th>Tên hàng</th><th>Số lượng bán ra</th><th>Doanh thu</th></tr>";
+        $tongdt = 0;
         while($row = $result->fetch_assoc()) {
             echo "<tr><td>" . $row["MAHANG"] . "</td><td>" . $row["TENHANG"] . "</td><td>" . $row["SODONHANG"] . "</td><td>" . $row["DOANHTHU"] . "</td></tr>";
+            $tongdt += $row["DOANHTHU"];
         }
+        echo "<tr><td colspan='4' style = 'text-align: right;' >Tổng doanh thu: " . $tongdt . "</td></tr>";
         echo "</table>";
 
         // Đóng kết nối với cơ sở dữ liệu
@@ -118,6 +119,39 @@
     ?>
     <br>
     <br>
+    <?php
+        // Kết nối với cơ sở dữ liệu
+        $conn = new mysqli('localhost', 'root', '', 'quanlyhanghoa');
+
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Kết nối cơ sở dữ liệu thất bại: " . $conn->connect_error);
+        }
+
+        // Thực hiện truy vấn SQL
+        $sql = "SELECT HANGHOA.MAHANG, HANGHOA.TENHANG, SUM(DONHANG.SOLUONG) AS SODONHANG, SUM(DONHANG.SOLUONG * HANGHOA.DONGIA) AS DOANHTHU
+                FROM HANGHOA
+                JOIN DONHANG ON HANGHOA.MAHANG = DONHANG.MAHANG
+                WHERE loai = 'Nhập'
+                GROUP BY HANGHOA.MAHANG";
+        $result = $conn->query($sql);
+
+        // Tạo bảng HTML với dữ liệu từ cơ sở dữ liệu
+        echo "<table>";
+        echo "<caption>Thống Kê Chi Phí Nhập Hàng</caption>";
+        echo "<tr><th>Mã hàng</th><th>Tên hàng</th><th>Số lượng nhập vào</th><th>Doanh thu</th></tr>";
+        $tongdt = 0;
+        while($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["MAHANG"] . "</td><td>" . $row["TENHANG"] . "</td><td>" . $row["SODONHANG"] . "</td><td>" . $row["DOANHTHU"] . "</td></tr>";
+            $tongdt += $row["DOANHTHU"];
+        }
+        echo "<tr><td colspan='4' style = 'text-align: right;' >Tổng chi phí: " . $tongdt . "</td></tr>";
+        echo "</table>";
+
+        // Đóng kết nối với cơ sở dữ liệu
+        $conn->close();
+    ?>
+    <br><br>
 </div>
 </body>
 </html>

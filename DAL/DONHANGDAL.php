@@ -1,5 +1,5 @@
 <?php
-class HOADONDALDAL {
+class DONHANGDAL{
     private $conn;
 
     public function __construct($servername, $username, $password, $dbname) {
@@ -16,36 +16,33 @@ class HOADONDALDAL {
         $this->conn->close();
     }
 
-    public function getAllHangHoa() {
-        $sql = "SELECT mahang, tenhang, dongia, soluong, donvitinh, mancc FROM hanghoa";
+    public function getAllDonHang() {
+        $sql = "SELECT madonhang,mahang,nguoidathang,soluong,ngaydathang,loai FROM donhang";
         return $this->conn->query($sql);
     }
 
-    public function searchHangHoa($search) {
-        $sql = "SELECT mahang, tenhang, dongia, soluong, donvitinh, mancc FROM hanghoa WHERE tenhang LIKE '%$search%'";
+    public function searchDonHang($search) {
+        $sql = "SELECT madonhang,mahang,nguoidathang,soluong,ngaydathang,loai FROM donhang WHERE madonhang LIKE '%$search%'";
         return $this->conn->query($sql);
     }
 
-    public function insertHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc) {
-        $sql = "INSERT INTO hanghoa (mahang, tenhang, dongia, soluong, donvitinh, mancc) VALUES ('$mahang', '$tenhang', '$dongia', '$soluong', '$donvitinh', '$mancc')";
+    public function insertDonHang($madonhang, $mahang, $nguoidathang, $soluong, $ngaydathang, $loai) {
+        $sql = "INSERT INTO donhang VALUES ('$madonhang', '$mahang', '$nguoidathang', '$soluong', '$ngaydathang', '$loai')";
         return $this->conn->query($sql);
     }
 
-    public function updateHangHoa($mahang, $tenhang, $dongia, $soluong, $donvitinh, $mancc) {
-        $sql = "UPDATE hanghoa SET tenhang='$tenhang', dongia='$dongia', soluong='$soluong', donvitinh='$donvitinh', mancc='$mancc' WHERE mahang='$mahang'";
+    public function updateHangHoa($madonhang, $soluong, $ngaydathang, $loai) {
+        $sql = "UPDATE donhang SET soluong='$soluong', ngaydathang='$ngaydathang',loai='$loai' WHERE madonhang='$madonhang'";
         return $this->conn->query($sql);
     }
 
-    public function deleteHangHoa($mahang) {
-        $sql = "DELETE FROM hanghoa WHERE mahang='$mahang'";
-        return $this->conn->query($sql);
-    }
-    public function getmahang($mahang) {
-        $sql = "SELECT * FROM hanghoa WHERE mahang = ?";
+    public function getmadonhang($madonhang) {
+        $sql = "SELECT * FROM donhang WHERE madonhang = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $mahang);
+        $stmt->bind_param("s", $madonhang);
         $stmt->execute();
         return $stmt->get_result();
     }
+    
 }
 ?>
