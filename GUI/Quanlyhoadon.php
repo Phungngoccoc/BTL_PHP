@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Giao Diện Trang Chủ</title>
-<link rel="stylesheet" href="quanlyhanghoa.css">
+<link rel="stylesheet" href="quanlyhanghoaa.css">
 <style>
     .selected-row {
         background-color: #4CAF50;

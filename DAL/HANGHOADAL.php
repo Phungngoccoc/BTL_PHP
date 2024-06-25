@@ -1,5 +1,4 @@
-<?php
-class HANGHOADAL {
+<?php class HANGHOADAL {
     private $conn;
 
     public function __construct($servername, $username, $password, $dbname) {
@@ -37,6 +36,10 @@ class HANGHOADAL {
     }
 
     public function deleteHangHoa($mahang) {
+        // Xóa các hàng liên quan trong bảng donhang trước khi xóa hàng trong bảng hanghoa
+        $this->deleteDonHangByMaHang($mahang);
+
+        // Sau đó xóa hàng trong bảng hanghoa
         $sql = "DELETE FROM hanghoa WHERE mahang='$mahang'";
         return $this->conn->query($sql);
     }
@@ -80,6 +83,13 @@ class HANGHOADAL {
         $sql = "UPDATE hanghoa SET soluong = ? WHERE mahang = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("is", $newQuantity, $mahang);
+        return $stmt->execute();
+    }
+
+    public function deleteDonHangByMaHang($mahang) {
+        $sql = "DELETE FROM donhang WHERE mahang = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $mahang);
         return $stmt->execute();
     }
 }

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>giaodientrangchu</title>
-<link rel="stylesheet" href="quanlyhanghoa.css">
+<link rel="stylesheet" href="quanlyhanghoaa.css">
 </head>
 <body >
 <div id="wrapper" >

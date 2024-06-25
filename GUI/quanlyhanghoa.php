@@ -29,6 +29,15 @@
         document.getElementById('donvitinh').value = cells[4].innerText;
         document.getElementById('mancc').value = cells[5].innerText;
     }
+    function confirmDelete(event) {
+        var action = event.target.value;
+        if (action === "Xóa") {
+            var confirmed = confirm("Bạn có chắc chắn muốn xóa hàng hóa này?");
+            if (!confirmed) {
+                event.preventDefault(); // Cancel form submission if not confirmed
+            }
+        }
+    }
 </script>
 </head>
 <body >
@@ -228,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="search-bar">
         <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
         <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
-        <button type="submit" name="action" value="Xóa" class="btn" style="margin-right: 100px;">Xóa</button>
+        <button type="submit" name="action" value="Xóa" class="btn" style="margin-right: 100px;"  onclick="confirmDelete(event)">Xóa</button>
     </div>
 </form>
 

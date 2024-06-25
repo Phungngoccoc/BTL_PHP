@@ -51,7 +51,7 @@
 </head>
 <body>
 <header>
-    <h1>BÁO CÁO THỐNG KÊ</h1>
+    <h1 style="text-align: center;">BÁO CÁO THỐNG KÊ</h1>
 </header>
 <div id="content" style="border: none ;">
     <button id="refresh-button" onclick="location.reload();">Refresh</button>
