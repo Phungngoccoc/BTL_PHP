@@ -42,10 +42,31 @@ class NCCDAL {
     }
 
     public function deleteNhaCungCap($MANCC) {
-        $sql = "DELETE FROM donhang WHERE MANCC = '$MANCC'";
-        $sql = "DELETE FROM hanghoa WHERE MANCC = '$MANCC'";
-        $this->conn->query($sql);
-        $sql = "DELETE FROM nhacungcap WHERE MANCC = '$MANCC'";
-        return $this->conn->query($sql);
+        // Bắt đầu giao dịch
+        $this->conn->begin_transaction();
+    
+        try {
+            // Xóa các đơn hàng liên quan đến nhà cung cấp
+            $sql = "DELETE FROM donhang WHERE MAHANG IN (SELECT MAHANG FROM hanghoa WHERE MANCC = '$MANCC')";
+            $this->conn->query($sql);
+    
+            // Xóa các sản phẩm liên quan đến nhà cung cấp
+            $sql = "DELETE FROM hanghoa WHERE MANCC = '$MANCC'";
+            $this->conn->query($sql);
+    
+            // Xóa nhà cung cấp
+            $sql = "DELETE FROM nhacungcap WHERE MANCC = '$MANCC'";
+            $this->conn->query($sql);
+    
+            // Commit giao dịch
+            $this->conn->commit();
+    
+            return true;
+        } catch (mysqli_sql_exception $e) {
+            // Rollback giao dịch nếu có lỗi xảy ra
+            $this->conn->rollback();
+            throw $e;
+        }
     }
+    
 }
