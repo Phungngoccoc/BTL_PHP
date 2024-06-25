@@ -128,7 +128,7 @@ function validateForm($data) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $action = $_POST['action'] ?? '';
+        $action = $_POST['action'] ?? '';
         $mahang = strtoupper(trim($_POST['mahang'] ?? ''));
         $tenhang = ucwords(strtolower(trim($_POST['tenhang'] ?? '')));
         $dongia = trim($_POST['dongia'] ?? '');

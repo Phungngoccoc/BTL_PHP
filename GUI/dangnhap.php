@@ -1,59 +1,22 @@
 <?php
-session_start(); // Start the session at the beginning of the script
+session_start(); 
 
-$servername = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "quanlyhanghoa";
+include "../BLL/TAIKHOANBLL.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-function checkData($username, $password) {
-     // Kiểm tra rỗng
-     if (empty($username) || empty($password)) {
-        return false;
-    }
-
-    // Kiểm tra ký tự đặc biệt
-    if (strpos($username, ' ') !== false || strpos($password, ' ') !== false) {
-        return false;
-    }
-
-    return true;
-}
+$taikhoanBLL = new TAIKHOANBLL();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["tentk"];
     $password = $_POST["mk"];
 
-    if (checkData($username, $password)) {
-        $sql = "SELECT * FROM taikhoan WHERE tentk = ? AND matkhau = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $username, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $_SESSION['logged_in'] = true; // Set session variable to indicate login
-            $_SESSION['username'] = $username; // Optionally store username in session
-            echo "<script>alert('Đăng nhập thành công!');</script>";
-            echo "<script>window.location.href = 'trangchu.php';</script>";
-            exit; // Exit after redirection
-        } else {
-            echo "<script>alert('Tên người dùng hoặc mật khẩu không đúng!');</script>";
-        }
-
-        $stmt->close();
+    if ($taikhoanBLL->loginUser($username, $password)) {
+        echo "<script>alert('Đăng nhập thành công!');</script>";
+        echo "<script>window.location.href = 'trangchu.php';</script>";
+        exit; // Exit after redirection
     } else {
-        echo "<script>alert('Tên người dùng hoặc mật khẩu không hợp lệ!');</script>";
+        echo "<script>alert('Tên người dùng hoặc mật khẩu không đúng!');</script>";
     }
 }
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
