@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($taikhoanBLL->loginUser($username, $password)) {
         echo "<script>alert('Đăng nhập thành công!');</script>";
         echo "<script>window.location.href = 'trangchu.php';</script>";
-        exit; // Exit after redirection
+        exit; 
     } else {
         echo "<script>alert('Tên người dùng hoặc mật khẩu không đúng!');</script>";
     }

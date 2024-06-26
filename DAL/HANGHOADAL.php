@@ -45,11 +45,9 @@
     }
 
     public function getmahang($mahang) {
-        $sql = "SELECT * FROM hanghoa WHERE mahang = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $mahang);
-        $stmt->execute();
-        return $stmt->get_result();
+        $sql = "SELECT * FROM hanghoa WHERE mahang = '$mahang'";
+        $result = $this->conn->query($sql);
+        return $result;
     }
 
     public function getAllMaHangHoa() {
@@ -59,11 +57,8 @@
     }
 
     public function getSoLuongHangHoa($mahang) {
-        $sql = "SELECT soluong FROM hanghoa WHERE mahang = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $mahang);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $sql = "SELECT soluong FROM hanghoa WHERE mahang = '$mahang'";
+        $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             return $row['soluong'];
@@ -80,17 +75,13 @@
         $newQuantity = $currentQuantity + $soluong;
 
         // Update the quantity in the database
-        $sql = "UPDATE hanghoa SET soluong = ? WHERE mahang = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("is", $newQuantity, $mahang);
-        return $stmt->execute();
+        $sql = "UPDATE hanghoa SET soluong = '$soluong' WHERE mahang = '$mahang'";
+        return $this->conn->query($sql);
     }
 
     public function deleteDonHangByMaHang($mahang) {
-        $sql = "DELETE FROM donhang WHERE mahang = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $mahang);
-        return $stmt->execute();
+        $sql = "DELETE FROM donhang WHERE mahang = '$mahang'";
+        return $this->conn->query($sql);
     }
 }
 ?>

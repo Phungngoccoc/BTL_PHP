@@ -70,7 +70,7 @@ INSERT INTO TAIKHOAN (MATK, TENTK, MATKHAU) VALUES ('TK001', 'admin', '123456');
 -- Thêm đơn hàng
 INSERT INTO DONHANG (MADONHANG, MAHANG, NGUOIDATHANG, SOLUONG, NGAYDATHANG, LOAI) VALUES
 ('DH001', 'HH01', 'Phùng Thế Ngọc', 2,'2024-06-06','Xuất'),
-('DH002', 'HH02', 'Nguyễn Văn A A', 5, '2024-06-07', 'Nhập'),
+('DH002', 'HH02', 'Nguyễn Văn A', 5, '2024-06-07', 'Nhập'),
 ('DH003', 'HH03', 'Nguyễn Thị B', 3, '2024-06-08', 'Xuất'),
 ('DH004', 'HH04', 'Trần Văn C', 4, '2024-06-09', 'Nhập'),
 ('DH005', 'HH05', 'Phạm Thị D', 2, '2024-06-10', 'Xuất'),
