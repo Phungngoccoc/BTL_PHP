@@ -1,3 +1,14 @@
+<?php
+session_start(); // Start session
+
+// Kiểm tra nếu người dùng chưa đăng nhập, chuyển hướng về trang đăng nhập
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: dangnhap.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

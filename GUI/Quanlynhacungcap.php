@@ -1,3 +1,14 @@
+<?php
+session_start(); // Start session
+
+// Kiểm tra nếu người dùng chưa đăng nhập, chuyển hướng về trang đăng nhập
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: dangnhap.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
