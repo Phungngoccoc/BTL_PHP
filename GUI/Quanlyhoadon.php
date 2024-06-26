@@ -45,7 +45,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <div class="search-bar">
     <form method="post">
         <input type="text" name="search" placeholder="Nhập mã đơn hàng" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;">
-        <button type="submit" name="action" value="Tìm">Tìm</button>
+        <button type="submit" name="action" value="Tìm" style="border-radius: 4px;width: 75px;">Tìm</button>
     </form>
 </div>
 
@@ -320,8 +320,8 @@ $search = isset($_POST['search']) ? $_POST['search'] : '';
     </select>
     <br><br>
     <div class="search-bar">
-        <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 200px; margin-left: 120px;">Thêm</button>
-        <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
+        <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 200px; margin-left: 120px;border-radius: 4px;width: 75px;">Thêm</button>
+        <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;border-radius: 4px;width: 75px;">Sửa</button>
     </div>
 </form>
 

@@ -29,7 +29,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     <link rel="stylesheet" href="quanlyhanghoaa.css">
     <style>
         .logout-btn {
-            position: absolute;
             top: 10px;
             right: 10px;
             padding: 8px 16px;
@@ -52,7 +51,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
             <h1>QUẢN LÝ HÀNG HÓA</h1>
         </header>
         
-        <a href="?action=logout" class="logout-btn">Đăng xuất</a>
+        <a href="?action=logout" class="logout-btn" >Đăng xuất</a>
 
         <div id="menu">
             <br>

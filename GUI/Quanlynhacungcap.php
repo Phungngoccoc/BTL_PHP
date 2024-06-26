@@ -56,7 +56,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <div class="search-bar">
         <form method="post">
             <input type="text" name="search" placeholder="Nhập tên nhà cung cấp" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;">
-            <button type="submit">Tìm</button>
+            <button type="submit" style="border-radius: 4px;width: 75px;">Tìm</button>
         </form>
     </div>
 
@@ -103,15 +103,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     ?>
 
     <form style="margin-top:50px;margin-left:100px" method="post">
-        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
-        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
+        <label style="font-size: 20px;">Mã NCC:</label> <input type="text" id="mancc" name="mancc" style="margin-left:30px;width: 148px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
+        <label style="font-size: 20px;margin-left:80px">Tên NCC:</label> <input type="text" id="tenncc" name="tenncc" style="margin-left:18px;width: 164px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
         <br><br>
         <label style="font-size: 20px;">Địa chỉ NCC:</label> <input type="text" id="diachincc" name="diachincc" style="width: 148px;margin-left:0px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
         <label style="font-size: 20px;margin-left:80px">Email NCC:</label> <input type="email" id="email" name="email" style="width: 164px;margin-left:0px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" required>
         <div style="margin-top:50px" class="search-bar">
-            <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
-            <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
-            <button type="submit" name="action" value="Xóa" class="btn" style="margin-right: 100px;" onclick="confirmDelete(event)">Xóa</button>
+            <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;border-radius: 4px;width: 75px;">Thêm</button>
+            <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;border-radius: 4px;width: 75px;">Sửa</button>
+            <button type="submit" name="action" value="Xóa" class="btn" style="margin-right: 100px;border-radius: 4px;width: 75px;" onclick="confirmDelete(event)">Xóa</button>
         </div>
     </form>
 

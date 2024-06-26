@@ -82,6 +82,7 @@ header {
     width: 65px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 15px;
+    border-radius: 4px;
 }
 
 .user-info .username {
@@ -95,6 +96,7 @@ header {
     padding: 10px 20px;
     border: none;
     transition: transform 0.3s ease;
+    border-radius: 4px;
 }
 
 .search-bar button:hover {

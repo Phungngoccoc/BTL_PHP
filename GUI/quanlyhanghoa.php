@@ -58,7 +58,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <div class="search-bar">
     <form method="post">
         <input type="text" name="search" placeholder="Nhập tên hàng hóa" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;">
-        <button type="submit" name="action" value="Tìm">Tìm</button>
+        <button type="submit" name="action" value="Tìm" style="border-radius: 4px;width: 75px;">Tìm</button>
     </form>
 </div>
 
@@ -127,6 +127,9 @@ function validateForm($data) {
         return empty($errors);
     } elseif (preg_match($specialCharPattern, $data['donvitinh'])) {
         $errors['donvitinh'] = 'Đơn vị tính không được chứa ký tự đặc biệt.';
+        return empty($errors);
+    }elseif (preg_match($numberPattern, $data['donvitinh'])) {
+        $errors['donvitinh'] = 'Đơn vị tính phải là chữ.';
         return empty($errors);
     }
 
@@ -222,12 +225,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form style="margin-top:50px;margin-left:100px" method="post">
     <label style="font-size: 20px;">Mã hàng:</label>
-    <input type="text" id="mahang" name="mahang" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($mahang) ? $mahang : ''; ?>">
+    <input type="text" id="mahang" name="mahang" style="margin-left:22px;width: 158px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($mahang) ? $mahang : ''; ?>">
     <label style="font-size: 20px;margin-left:80px">Tên hàng:</label>
     <input type="text" id="tenhang" name="tenhang" style="width: 180px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($tenhang) ? $tenhang : ''; ?>">
     <br><br>
     <label style="font-size: 20px;">Đơn giá:</label>
-    <input type="text" id="dongia" name="dongia" style="width: 180px;margin-left:6px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($dongia) ? $dongia : ''; ?>">
+    <input type="text" id="dongia" name="dongia" style="width: 158px;margin-left:28px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($dongia) ? $dongia : ''; ?>">
     <label style="font-size: 20px;margin-left:80px">Số lượng:</label>
     <input type="text" id="soluong" name="soluong" style="width: 180px;margin-left:2px;font-size: 18px;font-family: 'Times New Roman', Times, serif;" value="<?php echo isset($soluong) ? $soluong : ''; ?>">
     <br><br>
@@ -246,9 +249,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </select>
     <br><br><br>
     <div class="search-bar">
-        <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;">Thêm</button>
-        <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;">Sửa</button>
-        <button type="submit" name="action" value="Xóa" class="btn" style="margin-right: 100px;"  onclick="confirmDelete(event)">Xóa</button>
+        <button type="submit" name="action" value="Thêm" class="btn" style="margin-right: 100px;margin-left: 80px;border-radius: 4px;width: 75px;" >Thêm</button>
+        <button type="submit" name="action" value="Sửa" class="btn" style="margin-right: 100px;border-radius: 4px;width: 75px;">Sửa</button>
+        <button type="submit" name="action" value="Xóa" class="btn" style="margin-right: 100px;border-radius: 4px;width: 75px;"  onclick="confirmDelete(event)">Xóa</button>
     </div>
 </form>
 

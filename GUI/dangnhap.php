@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span>Mật khẩu:</span><br>
             <input type="password" id="mk" name="mk"><br>
             <a href="#">Quên mật khẩu?</a><br>
-            <input class="nut" type="submit" value="Đăng nhập"><br><br>
+            <input class="nut" type="submit" value="Đăng nhập" style="border-radius: 4px;"><br><br>
         </div>
     </form>
 </body>
