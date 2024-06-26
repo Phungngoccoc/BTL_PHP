@@ -69,14 +69,14 @@ INSERT INTO TAIKHOAN (MATK, TENTK, MATKHAU) VALUES ('TK001', 'admin', '123456');
 
 -- Thêm đơn hàng
 INSERT INTO DONHANG (MADONHANG, MAHANG, NGUOIDATHANG, SOLUONG, NGAYDATHANG, LOAI) VALUES
-('DH001', 'HH01', 'PHÙNG THẾ NGỌC', 2,'2024-06-06','Xuất'),
-('DH002', 'HH02', 'NGUYỄN VĂN A', 5, '2024-06-07', 'Nhập'),
-('DH003', 'HH03', 'NGUYỄN THỊ B', 3, '2024-06-08', 'Xuất'),
-('DH004', 'HH04', 'TRẦN VĂN C', 4, '2024-06-09', 'Nhập'),
-('DH005', 'HH05', 'PHẠM THỊ D', 2, '2024-06-10', 'Xuất'),
-('DH006', 'HH06', 'HOÀNG VĂN E', 6, '2024-06-11', 'Nhập'),
-('DH007', 'HH07', 'LÊ THỊ F', 3, '2024-06-12', 'Xuất'),
-('DH008', 'HH08', 'NGÔ VĂN G', 7, '2024-06-13', 'Nhập'),
-('DH009', 'HH09', 'LÊ VĂN H', 4, '2024-06-14', 'Xuất'),
-('DH010', 'HH10', 'VŨ THỊ K', 3, '2024-06-15', 'Nhập'),
-('DH011', 'HH11', 'TRẦN VĂN L', 2, '2024-06-16', 'Xuất');
+('DH001', 'HH01', 'Phùng Thế Ngọc', 2,'2024-06-06','Xuất'),
+('DH002', 'HH02', 'Nguyễn Văn A A', 5, '2024-06-07', 'Nhập'),
+('DH003', 'HH03', 'Nguyễn Thị B', 3, '2024-06-08', 'Xuất'),
+('DH004', 'HH04', 'Trần Văn C', 4, '2024-06-09', 'Nhập'),
+('DH005', 'HH05', 'Phạm Thị D', 2, '2024-06-10', 'Xuất'),
+('DH006', 'HH06', 'Hoàng Văn E', 6, '2024-06-11', 'Nhập'),
+('DH007', 'HH07', 'Lê Thị F', 3, '2024-06-12', 'Xuất'),
+('DH008', 'HH08', 'Ngô Văn G', 7, '2024-06-13', 'Nhập'),
+('DH009', 'HH09', 'Lê Văn H', 4, '2024-06-14', 'Xuất'),
+('DH010', 'HH10', 'Vũ Thị K', 3, '2024-06-15', 'Nhập'),
+('DH011', 'HH11', 'Trần Văn L', 2, '2024-06-16', 'Xuất');
