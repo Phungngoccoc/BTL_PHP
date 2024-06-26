@@ -134,7 +134,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='3'>Không có dữ liệu</td></tr>";
+                echo "<tr><td colspan='4'>Không có dữ liệu</td></tr>";
             }
             ?>
         </table>
