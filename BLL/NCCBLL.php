@@ -16,6 +16,10 @@ class NCCBLL {
     }
 
     public function addNhaCungCap($MANCC, $TENNCC, $DIACHINCC, $EMAIL) {
+         // Kiểm tra mã nhà cung cấp đã tồn tại trong database chưa
+    if ($this->dal->dalCheckMaNCC($MANCC)) {
+        return false; // Trả về false nếu mã nhà cung cấp đã tồn tại
+    }
          // Chuẩn hóa dữ liệu trước khi thêm vào cơ sở dữ liệu
          $MANCC = str_replace(" ", "", $MANCC);
          $MANCC = strtoupper(trim($MANCC)); // Chuyển thành chữ hoa và loại bỏ khoảng trắng thừa         

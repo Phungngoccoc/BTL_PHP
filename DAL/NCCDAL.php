@@ -9,6 +9,13 @@ class NCCDAL {
         }
     }
 
+    public function dalCheckMaNCC($MANCC) {
+        $sql = "SELECT COUNT(*) FROM nhacungcap WHERE MANCC = '$MANCC'";
+        $result = $this->conn->query($sql);
+        $count = $result->fetch_row()[0];
+        return $count > 0;
+    }
+    
     public function getNhaCungCap($search = '') {
         $sql = "SELECT * FROM nhacungcap";
         if (!empty($search)) {
